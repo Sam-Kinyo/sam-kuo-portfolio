@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>郭庭豪 — LINE Bot × AI 企業自動化專家</title>
+<meta name="description" content="專注 LINE Bot + AI 驅動的企業流程自動化。從連鎖零售到 B2B 採購，五個產業的實戰經驗。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0a0a0a;
+  --bg-card:#111111;
+  --bg-card-hover:#161616;
+  --text:#e8e6e1;
+  --text-dim:#8a8780;
+  --text-muted:#5a5850;
+  --accent:#c8a960;
+  --accent-dim:#a08940;
+  --green:#4a9e6e;
+  --green-dim:#2d6e47;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Noto Sans TC','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-weight:300;
+  line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--accent);color:var(--bg)}
+
+a{color:var(--accent);text-decoration:none;transition:color .3s var(--ease)}
+a:hover{color:#e0c878}
+
+/* ─── Noise Overlay ─── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Container ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+
+/* ─── Hero ─── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;padding:80px 0;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
+  background:linear-gradient(to top,var(--bg),transparent);pointer-events:none;
+}
+.hero-label{
+  font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);
+  letter-spacing:4px;text-transform:uppercase;color:var(--accent);
+  margin-bottom:32px;
+  opacity:0;animation:fadeUp .8s var(--ease-out) .2s forwards;
+}
+.hero-name{
+  font-family:var(--serif);font-size:clamp(48px,8vw,96px);
+  font-weight:700;line-height:1.05;letter-spacing:-0.02em;
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp .8s var(--ease-out) .4s forwards;
+}
+.hero-name em{font-style:italic;color:var(--accent)}
+.hero-sub{
+  font-size:clamp(16px,2vw,22px);font-weight:300;
+  color:var(--text-dim);max-width:600px;line-height:1.6;
+  opacity:0;animation:fadeUp .8s var(--ease-out) .6s forwards;
+}
+.hero-stats{
+  display:flex;gap:clamp(32px,5vw,64px);margin-top:48px;
+  opacity:0;animation:fadeUp .8s var(--ease-out) .8s forwards;
+}
+.stat-num{
+  font-family:var(--serif);font-size:clamp(36px,5vw,56px);
+  font-weight:700;color:var(--accent);line-height:1;
+}
+.stat-label{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-muted);margin-top:8px;
+}
+.hero-scroll{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  color:var(--text-muted);text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp .8s var(--ease-out) 1.2s forwards;
+}
+.hero-scroll::after{
+  content:'';width:1px;height:40px;background:var(--text-muted);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+
+/* ─── Section Headers ─── */
+.section{padding:clamp(80px,12vh,140px) 0}
+.section-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:16px;
+}
+.section-title{
+  font-family:var(--serif);font-size:clamp(32px,5vw,52px);
+  font-weight:700;line-height:1.15;margin-bottom:20px;
+}
+.section-desc{
+  font-size:clamp(15px,1.5vw,18px);color:var(--text-dim);
+  max-width:560px;line-height:1.7;margin-bottom:48px;
+}
+
+/* ─── Case Studies ─── */
+.cases{display:flex;flex-direction:column;gap:2px}
+.case{
+  background:var(--bg-card);border:1px solid #1a1a1a;
+  border-radius:2px;overflow:hidden;
+  transition:background .4s var(--ease),border-color .4s var(--ease);
+  cursor:default;
+}
+.case:hover{background:var(--bg-card-hover);border-color:#2a2a2a}
+.case-inner{
+  display:grid;grid-template-columns:1fr;gap:0;
+  padding:clamp(28px,4vw,48px);
+}
+@media(min-width:768px){
+  .case-inner{grid-template-columns:280px 1fr;gap:clamp(32px,4vw,64px)}
+}
+.case-meta{display:flex;flex-direction:column;gap:16px}
+.case-number{
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  color:var(--text-muted);
+}
+.case-client{
+  font-family:var(--serif);font-size:clamp(24px,3vw,32px);
+  font-weight:600;line-height:1.2;
+}
+.case-industry{
+  display:inline-block;padding:4px 12px;border:1px solid var(--accent-dim);
+  border-radius:2px;font-size:11px;letter-spacing:1px;color:var(--accent);
+  width:fit-content;
+}
+.case-body{display:flex;flex-direction:column;gap:20px}
+.case-headline{
+  font-size:clamp(15px,1.6vw,18px);font-weight:400;
+  color:var(--text);line-height:1.65;
+}
+.case-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tag{
+  font-family:var(--mono);font-size:11px;
+  padding:4px 10px;background:#1a1a1a;border-radius:2px;
+  color:var(--text-dim);letter-spacing:0.5px;
+}
+.case-results{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:16px;margin-top:8px;
+}
+.result{
+  padding:16px;background:#0d0d0d;border-left:2px solid var(--green-dim);
+}
+.result-num{
+  font-family:var(--serif);font-size:24px;font-weight:700;
+  color:var(--green);line-height:1;
+}
+.result-text{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.4}
+
+/* ─── Tech Stack ─── */
+.stack-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2px;
+}
+.stack-item{
+  background:var(--bg-card);padding:28px;
+  border:1px solid #1a1a1a;border-radius:2px;
+  transition:border-color .3s var(--ease);
+}
+.stack-item:hover{border-color:var(--accent-dim)}
+.stack-icon{font-size:24px;margin-bottom:12px}
+.stack-name{font-weight:500;font-size:15px;margin-bottom:6px}
+.stack-detail{font-size:13px;color:var(--text-dim);line-height:1.5}
+
+/* ─── CTA ─── */
+.cta-section{
+  padding:clamp(80px,12vh,140px) 0;
+  text-align:center;
+}
+.cta-title{
+  font-family:var(--serif);font-size:clamp(28px,5vw,48px);
+  font-weight:700;line-height:1.2;margin-bottom:20px;
+}
+.cta-desc{
+  font-size:clamp(15px,1.5vw,18px);color:var(--text-dim);
+  max-width:500px;margin:0 auto 40px;line-height:1.7;
+}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 40px;background:var(--accent);color:var(--bg);
+  font-family:var(--sans);font-size:15px;font-weight:700;
+  letter-spacing:1px;border:none;border-radius:2px;cursor:pointer;
+  transition:all .3s var(--ease);
+}
+.cta-btn:hover{background:#e0c878;color:var(--bg);transform:translateY(-2px)}
+.cta-channels{
+  display:flex;justify-content:center;gap:32px;margin-top:32px;
+  flex-wrap:wrap;
+}
+.cta-channel{
+  font-family:var(--mono);font-size:13px;color:var(--text-muted);
+  letter-spacing:0.5px;
+}
+
+/* ─── Footer ─── */
+footer{
+  padding:40px 0;border-top:1px solid #1a1a1a;
+  text-align:center;
+}
+footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
+
+/* ─── Animations ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:.3;transform:scaleY(1)}
+  50%{opacity:.8;transform:scaleY(1.3)}
+}
+
+/* ─── Scroll Reveal ─── */
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── Responsive ─── */
+@media(max-width:600px){
+  .hero-stats{flex-wrap:wrap;gap:24px}
+  .case-results{grid-template-columns:1fr 1fr}
+  .cta-channels{flex-direction:column;align-items:center;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+<div class="container">
+  <div class="hero-label">Line Bot × AI Automation</div>
+  <h1 class="hero-name">
+    用 <em>LINE Bot</em><br>
+    取代你最煩的<br>
+    日常作業
+  </h1>
+  <p class="hero-sub">
+    我是郭庭豪 (Sam Kuo)，專注於 LINE Bot + AI 驅動的企業流程自動化。<br>
+    五個截然不同的產業、五套線上穩定運行中的系統，幫企業省下每天數小時的人工作業。
+  </p>
+  <div class="hero-stats">
+    <div><div class="stat-num">10+</div><div class="stat-label">產業實戰</div></div>
+    <div><div class="stat-num">4000+</div><div class="stat-label">累計終端使用者</div></div>
+    <div><div class="stat-num">5</div><div class="stat-label">套系統上線運行中</div></div>
+  </div>
+  <div class="hero-scroll">Scroll<span></span></div>
+</div>
+</section>
+
+<!-- ═══════════ CASES ═══════════ -->
+<section class="section" id="cases">
+<div class="container">
+  <div class="section-label reveal">Case Studies</div>
+  <h2 class="section-title reveal">每一個都是<br>正在線上跑的系統</h2>
+  <p class="section-desc reveal">不是 demo，不是 side project。是真實企業每天在用的工具。</p>
+
+  <div class="cases">
+
+    <!-- Case 1 -->
+    <article class="case reveal">
+    <div class="case-inner">
+      <div class="case-meta">
+        <div class="case-number">01</div>
+        <div class="case-client">連鎖電器品牌</div>
+        <div class="case-industry">連鎖零售</div>
+      </div>
+      <div class="case-body">
+        <div class="case-headline">
+          65 間門市的店員每天拍照傳 LINE，系統自動依店名歸檔到 Google Drive，<br>
+          總部每週收到自動產出的 Excel 統計報表和 email。<br>
+          <strong>從「人工收圖整理」變成「傳照片就結束」。</strong>
+        </div>
+        <div class="case-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Google Drive API</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">自動週報/月報</span>
+        </div>
+        <div class="case-results">
+          <div class="result"><div class="result-num">65</div><div class="result-text">間門市同時運作</div></div>
+          <div class="result"><div class="result-num">0 分鐘</div><div class="result-text">人工整理時間</div></div>
+          <div class="result"><div class="result-num">自動</div><div class="result-text">週報 + 月報 + Email</div></div>
+        </div>
+      </div>
+    </div>
+    </article>
+
+    <!-- Case 2 -->
+    <article class="case reveal">
+    <div class="case-inner">
+      <div class="case-meta">
+        <div class="case-number">02</div>
+        <div class="case-client">台灣小家電霸主</div>
+        <div class="case-industry">B2B 企業採購</div>
+      </div>
+      <div class="case-body">
+        <div class="case-headline">
+          業務在 LINE 群組說「預算 500-700，300 個」，AI 自動搜尋 2000+ 商品、<br>
+          計算四級階梯報價、回傳商品卡片。還能直接在 LINE 裡下單、追蹤、處理異常。<br>
+          <strong>把整個 B2B 採購流程塞進一個 LINE Bot。</strong>
+        </div>
+        <div class="case-tags">
+          <span class="tag">Gemini AI</span>
+          <span class="tag">Firebase Cloud Functions</span>
+          <span class="tag">Flex Message</span>
+          <span class="tag">PPT/Excel 匯出</span>
+          <span class="tag">四級定價引擎</span>
+        </div>
+        <div class="case-results">
+          <div class="result"><div class="result-num">2000+</div><div class="result-text">商品即時查價</div></div>
+          <div class="result"><div class="result-num">AI</div><div class="result-text">自然語言查價下單</div></div>
+          <div class="result"><div class="result-num">4 級</div><div class="result-text">客戶分級報價</div></div>
+        </div>
+      </div>
+    </div>
+    </article>
+
+    <!-- Case 3 -->
+    <article class="case reveal">
+    <div class="case-inner">
+      <div class="case-meta">
+        <div class="case-number">03</div>
+        <div class="case-client">連鎖髮廊預約系統</div>
+        <div class="case-industry">個人服務業</div>
+      </div>
+      <div class="case-body">
+        <div class="case-headline">
+          顧客在 LINE 看價目表、點連結預約；設計師在 LINE 裡打卡、鎖班、查營收。<br>
+          休假日曆自動阻擋預約，完工紀錄自動結算日/月營收；設計師與老闆拆帳自動計算。<br>
+          系統後台就將會計帳做好，營收一目了然。<br>
+          <strong>連鎖店，只用 LINE 就管完所有事。</strong>
+        </div>
+        <div class="case-tags">
+          <span class="tag">LIFF</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">Rich Menu 雙層選單</span>
+          <span class="tag">Google Calendar</span>
+        </div>
+        <div class="case-results">
+          <div class="result"><div class="result-num">30 秒</div><div class="result-text">完成一筆預約</div></div>
+          <div class="result"><div class="result-num">即時</div><div class="result-text">營收儀表板</div></div>
+          <div class="result"><div class="result-num">0</div><div class="result-text">額外 App 需要下載</div></div>
+        </div>
+      </div>
+    </div>
+    </article>
+
+    <!-- Case 4 -->
+    <article class="case reveal">
+    <div class="case-inner">
+      <div class="case-meta">
+        <div class="case-number">04</div>
+        <div class="case-client">高爾夫教練</div>
+        <div class="case-industry">一對一教學</div>
+      </div>
+      <div class="case-body">
+        <div class="case-headline">
+          學員用 LIFF 預約課程，教練在 LINE 一鍵核准，系統自動扣堂數、<br>
+          前一晚推播明日行程、課程包到期前 30 天自動提醒。<br>
+          <strong>教練只需要專心教球，其他的系統處理。</strong>
+        </div>
+        <div class="case-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">Cloud Run</span>
+          <span class="tag">Cloud Scheduler</span>
+          <span class="tag">Firestore Transaction</span>
+        </div>
+        <div class="case-results">
+          <div class="result"><div class="result-num">FIFO</div><div class="result-text">堂數先到期先扣</div></div>
+          <div class="result"><div class="result-num">自動</div><div class="result-text">明日提醒 + 到期警告</div></div>
+          <div class="result"><div class="result-num">雙角色</div><div class="result-text">教練/學員不同介面</div></div>
+        </div>
+      </div>
+    </div>
+    </article>
+
+    <!-- Case 5 -->
+    <article class="case reveal">
+    <div class="case-inner">
+      <div class="case-meta">
+        <div class="case-number">05</div>
+        <div class="case-client">麻吉 FunGolf</div>
+        <div class="case-industry">社群團體活動</div>
+      </div>
+      <div class="case-body">
+        <div class="case-headline">
+          2000 人球敘群組，每月 10-12 場、每場 120 人報名。<br>
+          一鍵報名、候補自動遞補、同組管理、AI 自然語言操作，<br>
+          還有 Email 會員審核和 Web 版報名系統。<br>
+          <strong>把混亂的群組接龍，變成一鍵搞定的系統。</strong>
+        </div>
+        <div class="case-tags">
+          <span class="tag">Gemini Function Calling</span>
+          <span class="tag">Firestore Transaction</span>
+          <span class="tag">React + LINE Login</span>
+          <span class="tag">Cloud Scheduler</span>
+          <span class="tag">Email 審核</span>
+        </div>
+        <div class="case-results">
+          <div class="result"><div class="result-num">2000</div><div class="result-text">人群組管理</div></div>
+          <div class="result"><div class="result-num">120</div><div class="result-text">人/場自動分組</div></div>
+          <div class="result"><div class="result-num">AI</div><div class="result-text">自然語言報名取消</div></div>
+        </div>
+      </div>
+    </div>
+    </article>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ TECH ═══════════ -->
+<section class="section" id="tech">
+<div class="container">
+  <div class="section-label reveal">Tech Stack</div>
+  <h2 class="section-title reveal">不挑框架，<br>挑最適合的</h2>
+  <p class="section-desc reveal">根據每個案子的需求選技術，不是反過來。</p>
+  <div class="stack-grid">
+    <div class="stack-item reveal"><div class="stack-icon">🤖</div><div class="stack-name">LINE Bot SDK v3</div><div class="stack-detail">Webhook、Flex Message、Rich Menu、LIFF、Postback 全部用過</div></div>
+    <div class="stack-item reveal"><div class="stack-icon">🧠</div><div class="stack-name">Gemini AI</div><div class="stack-detail">Function Calling、自然語言解析、意圖分類、多輪對話</div></div>
+    <div class="stack-item reveal"><div class="stack-icon">🔥</div><div class="stack-name">Firebase</div><div class="stack-detail">Firestore、Cloud Functions、Authentication、Hosting</div></div>
+    <div class="stack-item reveal"><div class="stack-icon">☁️</div><div class="stack-name">Google Cloud</div><div class="stack-detail">Cloud Run、Cloud Scheduler、Drive API、Apps Script</div></div>
+    <div class="stack-item reveal"><div class="stack-icon">⚡</div><div class="stack-name">Python & TypeScript</div><div class="stack-detail">FastAPI、Flask、Express，看場景選語言</div></div>
+    <div class="stack-item reveal"><div class="stack-icon">🎨</div><div class="stack-name">Frontend</div><div class="stack-detail">React、Vite、LIFF SDK、Tailwind，Web 和 LINE 內嵌都做</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section" id="contact">
+<div class="container">
+  <div class="section-label reveal">Let's Talk</div>
+  <h2 class="cta-title reveal">你的業務流程裡，<br>哪一段最煩？</h2>
+  <p class="cta-desc reveal">
+    告訴我你每天在重複做的事，<br>
+    我來評估能不能用 LINE Bot + AI 幫你省掉。<br>
+    初次諮詢免費。
+  </p>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="cta-btn reveal">
+    加 LINE 聊聊 →
+  </a>
+  <div class="cta-channels reveal">
+    <span class="cta-channel">LINE：0985266991</span>
+    <span class="cta-channel">Email：tinghowkuo@gmail.com</span>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+<div class="container">
+  <p>© 2026 郭庭豪 — LINE Bot × AI 企業自動化</p>
+</div>
+</footer>
+
+<!-- ═══════════ SCROLL REVEAL ═══════════ -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        // Stagger siblings
+        const parent=e.target.parentElement;
+        if(parent){
+          const siblings=[...parent.querySelectorAll('.reveal')];
+          const idx=siblings.indexOf(e.target);
+          if(idx>-1) e.target.style.transitionDelay=`${idx*0.08}s`;
+        }
+      }
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+});
+</script>
+
+</body>
+</html>
