@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KR7ZK383');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17808239126"></script>
@@ -56,6 +63,50 @@ body::after{
 
 .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,48px)}
 .divider{height:1px;background:var(--line-color);margin:0}
+
+/* ═══ PHONE MOCKUP & NEW LAYOUTS ═══ */
+.phone-mockup{
+  position:relative;width:100%;max-width:320px;margin:0 auto;
+  background:#000;border-radius:40px;padding:12px;box-shadow:0 24px 64px rgba(0,0,0,0.15), inset 0 0 0 2px #444;
+  animation:float 6s ease-in-out infinite;
+}
+.phone-mockup::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:120px;height:24px;background:#000;border-bottom-left-radius:16px;border-bottom-right-radius:16px;
+  z-index:2;
+}
+.phone-mockup img{
+  width:100%;height:auto;border-radius:32px;display:block;
+  object-fit:cover;object-position:top;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:center;
+}
+@media(min-width:800px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:64px}
+  .hero-grid .phone-mockup{margin-left:auto;margin-right:0}
+}
+.feat-row{
+  display:grid;grid-template-columns:1fr;gap:40px;align-items:center;
+  margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--line-color);
+}
+.feat-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+@media(min-width:800px){
+  .feat-row{grid-template-columns:1fr 1fr;gap:80px}
+  .feat-row.reverse .feat-text{order:2}
+  .feat-row.reverse .feat-img{order:1}
+}
+.feat-text h3{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:900;margin-bottom:16px;line-height:1.4}
+.feat-text p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:24px}
+.feat-list{list-style:none;margin-bottom:0}
+.feat-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.feat-list li::before{content:'✓';color:var(--accent);font-weight:900}
+.feat-list-title{font-weight:700;display:block;margin-bottom:4px;color:var(--text)}
+.feat-list-desc{font-size:14px;color:var(--text-sub);line-height:1.6}
 
 /* ═══ HERO ═══ */
 .hero{padding:clamp(100px,18vh,180px) 0 clamp(60px,10vh,100px)}
@@ -341,9 +392,34 @@ nav{
 .nav-link.accent{color:var(--accent);border:1px solid rgba(45,107,63,0.2)}
 .nav-link.accent:hover{background:rgba(45,107,63,0.06)}
 @media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
+/* ─── Floating LINE CTA ─── */
+.floating-cta{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  width:60px;height:60px;background:#06C755;border-radius:50%;
+  box-shadow:0 8px 24px rgba(6,199,85,0.3);
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+  animation:floatBounce 3s ease-in-out infinite;
+}
+.floating-cta:hover{
+  transform:translateY(-4px);box-shadow:0 12px 32px rgba(6,199,85,0.4);
+}
+.floating-cta svg{width:32px;height:32px;fill:#fff;}
+@keyframes floatBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@media(max-width:600px){
+  .floating-cta{bottom:20px;right:20px;width:52px;height:52px;}
+  .floating-cta svg{width:28px;height:28px;}
+}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KR7ZK383"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav>
@@ -352,22 +428,31 @@ nav{
     <a href="/" class="nav-link">首頁</a>
     <a href="/salon" class="nav-link">美業方案</a>
     <a href="/group" class="nav-link">社群團報</a>
-    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent">免費諮詢</a>
+    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent" id="cta-nav-line">免費諮詢</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" style="padding-top:clamp(120px,20vh,180px)">
 <div class="wrap">
-  <p class="hero-eyebrow">專為教練 × 老師 × 工作室打造</p>
-  <h1>學員用 LINE 預約。<br>你用 LINE <span>管所有課</span>。</h1>
-  <p class="hero-body">
-    不用下載 App、不用建網站。<br>
-    預約、審核、堂數、排班、提醒——全部在 LINE 裡搞定。<br>
-    你只需要專心教課。
-  </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta">免費諮詢，聊聊你的需求 →</a>
-  <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="hero-eyebrow">專為高爾夫教練、健身教練打造</p>
+      <h1>學員用 LINE 預約。<br>你用 LINE <span>管所有課</span>。</h1>
+      <p class="hero-body">
+        不用下載 App、不用建網站。<br>
+        預約、審核、堂數、排班、提醒——全部自動化搞定。<br>
+        專區化設計，讓您展現最頂級的教學專業形象。
+      </p>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta" id="cta-hero-line">馬上看 DEMO 與免費諮詢 →</a>
+      <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 無額外隱藏費用</p>
+    </div>
+    <div class="hero-image reveal">
+      <div class="phone-mockup">
+        <img src="images/coach-booking.jpg" alt="高爾夫預約系統首頁">
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -435,34 +520,78 @@ nav{
 <section class="features">
 <div class="wrap">
   <p class="section-tag reveal">解決方案</p>
-  <h2 class="reveal">學員在 LINE 裡預約，<br>你在 LINE 裡管所有事。</h2>
-  <p class="features-intro reveal">學員本來就在用 LINE 找你。<br>不需要他下載新的 App，也不需要你學新的後台。</p>
-  <div class="feat-grid">
-    <div class="feat reveal">
-      <h3>學員 LINE 預約</h3>
-      <p>學員在 LINE 裡選日期、時段、課程類型，一鍵送出。你收到通知後一鍵核准或改時間。</p>
+  <h2 class="reveal">拒絕再用 Excel 記帳，<br>讓專屬系統為您處理所有瑣事。</h2>
+  <p class="features-intro reveal">從直覺的學員預約，到教練專屬管理的強大後台，<br>全方案高度整合於 LINE 中，滑手機就能輕鬆掌控事業。</p>
+
+  <!-- Feature 1: Student Time Picker -->
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>極致流暢的預約體驗，<br>自動防撞課機制</h3>
+      <p>不再人工來回問「老師這天有空嗎？」。學員清楚看見您所有可預約時段，甚至能知道您在哪個場地上課。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">即時時段顯示</span>
+          <span class="feat-list-desc">清楚列出哪幾個小時可選，完全依照您的課表生成。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">教練忙碌狀態</span>
+          <span class="feat-list-desc">已被預約的時段會自動阻擋，並顯示「上課中」，大幅提昇專業形象。</span>
+        </li>
+      </ul>
     </div>
-    <div class="feat reveal">
-      <h3>堂數自動管理</h3>
-      <p>學員買課自動入帳，上課自動扣堂。先到期的先扣，剩餘堂數即時查。不用再手動記帳。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>固定排班 + 休假</h3>
-      <p>設定每週固定課表，系統自動展開。臨時請假一鍵設定，該時段自動阻擋預約。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>自動提醒</h3>
-      <p>上課前一天晚上自動推播提醒學員，附上地點導航連結。爽約率直接降下來。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>教練行程彙整</h3>
-      <p>每天晚上自動收到明日課表摘要，幾點在哪裡教誰，一目了然。不用再翻行事曆。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>到期提醒</h3>
-      <p>課程包到期前 30 天自動通知學員續購。不用你開口催，系統幫你做。</p>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/coach-time-picker.jpg" alt="學員預約時間選單">
+      </div>
     </div>
   </div>
+
+  <!-- Feature 2: Coach Backend LIFF -->
+  <div class="feat-row reverse">
+    <div class="feat-text reveal">
+      <h3>教練專屬強大後台，<br>學員名單與堂數一手掌控</h3>
+      <p>再也不用翻筆記本算堂數！獨立的高級管理介面，讓您不用開電腦就能快速處理行政作業。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">學員明細總攬</span>
+          <span class="feat-list-desc">一鍵看清所有學員的總剩餘堂數、購買紀錄。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">手動加課扣課</span>
+          <span class="feat-list-desc">如果學員請您幫忙處理，按兩個鍵就能手動完成扣課或儲值。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/coach-view4.jpg" alt="教練後台學員明細">
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature 3: Coach Summary Push -->
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>明日行程自動彙報，<br>就像擁有專屬個人秘書</h3>
+      <p>每天下班時間，系統自動幫您整理明天的所有課表，不用點開軟體，直接在群組或對話裡一目了然。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">課表即時派送</span>
+          <span class="feat-list-desc">清楚列出學生姓名、教學地點，精準備課不慌忙。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">上課自動提醒學員</span>
+          <span class="feat-list-desc">不僅提醒教練，更會在課前自動提醒學員，將爽約率近乎降到零。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/coach-view3.jpg" alt="教練明日行程推播">
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
 
@@ -538,7 +667,7 @@ nav{
         <li>上課前自動提醒</li>
         <li>學員查詢預約</li>
       </ul>
-      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary">免費諮詢</a>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary" id="cta-price1-line">免費諮詢</a>
     </div>
     <div class="price-col highlight">
       <div class="price-tier">完整方案</div>
@@ -552,7 +681,7 @@ nav{
         <li>教練後台（LIFF）</li>
         <li>學員上課紀錄查詢</li>
       </ul>
-      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary">免費諮詢</a>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary" id="cta-price2-line">免費諮詢</a>
     </div>
   </div>
 </div>
@@ -579,7 +708,7 @@ nav{
 <div class="wrap">
   <h2 class="reveal">你的時間應該花在教課，<br>不是處理行政瑣事。</h2>
   <p class="reveal">30 分鐘免費諮詢，聊聊你的狀況。<br>不適合會直接說。</p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal">加 LINE 免費諮詢 →</a>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal" id="cta-footer-line">加 LINE 免費諮詢 →</a>
   <div class="final-contact reveal">
     <span>LINE：0985266991</span>
     <span>Email：tinghowkuo@gmail.com</span>
@@ -605,5 +734,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 </script>
+<!-- ═══════════ FLOATING CTA ═══════════ -->
+<a href="https://line.me/ti/p/W_kON8x9Tw" class="floating-cta" id="cta-line-float" title="加 LINE 諮詢" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M23.146 10.362c0-4.38-4.408-7.946-9.824-7.946-5.416 0-9.824 3.567-9.824 7.946 0 3.931 3.513 7.234 8.28 7.859.324.068.756.208.865.485.099.25-.032.645-.064.896l-.16 1.002c-.049.303-.23.903.784.476 1.014-.427 5.483-3.23 7.55-5.591.758-.87 1.393-2.029 1.393-3.127zm-13.844.75h-2.147v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v2.744h1.101c.289 0 .523.234.523.523s-.234.523-.523.523zm3.176 0h-1.046c-.289 0-.523-.234-.523-.523v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v3.79c0 .289-.234.523-.523.523zm3.033-2.181l-1.396-1.579c-.214-.241-.531-.38-.857-.38h-.002c-.289 0-.523.234-.523.523v3.79c0 .289.234.523.523.523s.523-.234.523-.523v-1.637l1.396 1.576c.214.241.531.38.857.38h.002c.289 0 .523-.234.523-.523v-3.79c0-.289-.234-.523-.523-.523s-.523.234-.523.523v1.64z"/></svg>
+</a>
+
 </body>
 </html>
