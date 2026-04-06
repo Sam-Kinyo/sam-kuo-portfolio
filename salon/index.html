@@ -6,7 +6,7 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+})(window,document,'script','dataLayer','GTM-KR7ZK383');</script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <!-- Google tag (gtag.js) -->
@@ -365,6 +365,50 @@ nav{
 .nav-link.accent{color:var(--green);border:1px solid rgba(45,122,79,0.2)}
 .nav-link.accent:hover{background:rgba(45,122,79,0.06)}
 @media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
+
+/* ─── Phone Mockup ─── */
+.mockup-wrapper{
+  position:relative;width:100%;max-width:280px;margin:0 auto;
+  perspective:1000px;
+}
+.phone-mockup{
+  position:relative;width:100%;aspect-ratio:390/844;
+  background:#000;border-radius:32px;
+  border:8px solid #1a1a1a;
+  box-shadow:0 24px 48px rgba(0,0,0,0.1), inset 0 0 0 2px #333;
+  overflow:hidden;transform-style:preserve-3d;
+  transition:transform .5s var(--ease-out);
+}
+.phone-mockup::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:100px;height:24px;background:#1a1a1a;
+  border-bottom-left-radius:12px;border-bottom-right-radius:12px;
+  z-index:10;
+}
+.phone-mockup img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+/* For Hero section */
+@media(min-width:900px){
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+  .phone-mockup.hero-phone{transform:rotateY(-10deg) rotateX(5deg);box-shadow:-20px 24px 48px rgba(0,0,0,0.1)}
+  .phone-mockup.hero-phone:hover{transform:rotateY(-5deg) rotateX(2deg) translateY(-10px);box-shadow:-10px 32px 56px rgba(0,0,0,0.15)}
+}
+/* For Features section */
+.feat-row{
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:center;
+  margin-bottom:80px;
+}
+.feat-row.reverse{direction:rtl}
+.feat-row.reverse > *{direction:ltr}
+@media(min-width:768px){
+  .feat-row{grid-template-columns:1fr 1fr;gap:64px}
+  .feat-row:last-child{margin-bottom:0}
+  .feat-text{padding-right:40px}
+  .feat-row.reverse .feat-text{padding-right:0;padding-left:40px}
+}
+.feat-text h3{font-size:24px;font-family:var(--serif);font-weight:900;margin-bottom:16px;color:var(--text)}
+.feat-text p{font-size:16px;color:var(--text-sub);line-height:1.8}
 /* ─── Floating LINE CTA ─── */
 .floating-cta{
   position:fixed;bottom:24px;right:24px;z-index:999;
@@ -390,7 +434,7 @@ nav{
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KR7ZK383"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -407,15 +451,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HERO -->
 <section class="hero" style="padding-top:clamp(120px,20vh,180px)">
-<div class="wrap">
-  <p class="hero-eyebrow">專為美業打造</p>
-  <h1>客人用 LINE 預約。<br>你用 LINE <span>管整間店</span>。</h1>
-  <p class="hero-body">
-    不用下載 App、不用教客人操作。<br>
-    預約、排班、營收、拆帳，全部在 LINE 裡搞定。
-  </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line" id="cta-hero-line">免費諮詢，聊聊你的需求 →</a>
-  <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+<div class="wrap hero-grid">
+  <div class="hero-content">
+    <p class="hero-eyebrow">專為美業打造</p>
+    <h1>客人用 LINE 預約。<br>你用 LINE <span>管整間店</span>。</h1>
+    <p class="hero-body">
+      不用下載 App、不用教客人操作。<br>
+      預約、排班、營收、拆帳，全部在 LINE 裡搞定。<br>
+      最懂美業的專屬管理秘書。
+    </p>
+    <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line" id="cta-hero-line">免費諮詢，聊聊你的需求 →</a>
+    <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="mockup-wrapper">
+      <div class="phone-mockup hero-phone">
+        <img src="images/customer-view.jpg" alt="客人看到的精美預約畫面" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 390 844%22%3E%3Crect width=%22390%22 height=%22844%22 fill=%22%23111%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2224%22 text-anchor=%22middle%22%3E請放入 customer-view.jpg%3C/text%3E%3C/svg%3E'">
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -453,34 +507,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="features">
 <div class="wrap">
   <p class="section-tag reveal">解決方案</p>
-  <h2 class="reveal">不是叫客人換一個系統。<br>是讓他在 LINE 裡就完成一切。</h2>
-  <p class="features-intro reveal">你的客人本來就在用 LINE。<br>我們不改變習慣，只是讓習慣變得更有效率。</p>
-  <div class="feat-grid">
-    <div class="feat reveal">
-      <h3>顧客 LINE 預約</h3>
-      <p>客人在 LINE 裡看價目表、選時段、一鍵預約。不用下載 App，不用教他操作。預約完自動收到確認通知。</p>
+  <h2 class="reveal">不是叫客人換系統。<br>是讓他在 LINE 即刻完成預約。</h2>
+  <p class="features-intro reveal" style="margin-bottom:64px;">你的客人本來就在用 LINE。<br>我們不改變習慣，只是讓一切變得更高級、更有效率。</p>
+  
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>【設計師端】營收、排班一目了然</h3>
+      <p>管理員專屬選單，點擊「營收」瞬間結算日/月業績。點擊「鎖班」自動更新行事曆，不用再跳出 LINE 查 Excel，不用在群組裡問「誰幫我記帳」。</p>
     </div>
-    <div class="feat reveal">
-      <h3>設計師排班管理</h3>
-      <p>設計師在 LINE 裡設定休假、鎖班、查自己的行程。請假自動阻擋預約，不會再撞班。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>營收自動結算</h3>
-      <p>每次完工打卡自動記錄，日營收、月營收即時看。設計師與老闆的拆帳比例自動計算，月底不用再手動對帳。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>自動提醒通知</h3>
-      <p>預約前一天自動提醒客人，減少爽約。取消預約時自動通知設計師，不會空等。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>精緻價目表</h3>
-      <p>客人點選單就看到分類清楚的價目表。價格從後台改，LINE 即時更新。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>休假日曆公告</h3>
-      <p>客人傳「本月休假」就看到整月日曆，紅色休假、藍色半天班，一目了然。</p>
+    <div class="feat-visual reveal">
+      <div class="mockup-wrapper">
+        <div class="phone-mockup">
+          <img src="images/designer-view1.jpg" alt="設計師後台畫面" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 390 844%22%3E%3Crect width=%22390%22 height=%22844%22 fill=%22%23111%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22%3E請放入 designer-view1.jpg%3C/text%3E%3C/svg%3E'">
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="feat-row reverse">
+    <div class="feat-text reveal">
+      <h3>【設計師端】快捷輸入，休假秒設定</h3>
+      <p>休假設定超級直覺！選擇日期後，系統自動將該時段阻擋預約。客人點擊行事曆時，也能清楚看見紅色（全日休）與藍色（半日休）標示，避免白跑一趟。</p>
+    </div>
+    <div class="feat-visual reveal">
+      <div class="mockup-wrapper">
+        <div class="phone-mockup">
+          <img src="images/designer-view2.jpg" alt="快選選單與休假表" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 390 844%22%3E%3Crect width=%22390%22 height=%22844%22 fill=%22%23111%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22%3E請放入 designer-view2.jpg%3C/text%3E%3C/svg%3E'">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>【顧客端】精緻價目表與 24H 預約</h3>
+      <p>客人用 LINE 點選「預約」或「服務價目」，直接彈出高質感的深黑金介面。完全不需教學、不必下載 App，輕鬆完成高規格體驗。</p>
+    </div>
+    <div class="feat-visual reveal">
+      <div class="mockup-wrapper">
+        <div class="phone-mockup">
+          <img src="images/customer-pricing.jpg" alt="精緻價目表" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 390 844%22%3E%3Crect width=%22390%22 height=%22844%22 fill=%22%23111%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22%3E請放入 customer-pricing.jpg%3C/text%3E%3C/svg%3E'">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
 
