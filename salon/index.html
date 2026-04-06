@@ -329,12 +329,43 @@ footer a:hover{color:rgba(255,255,255,.5)}
   transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
 }
 .reveal.v{opacity:1;transform:translateY(0)}
+
+/* ─── Nav ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 clamp(24px,5vw,48px);height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-color);
+}
+.nav-logo{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--text-light)}
+.nav-logo a{color:var(--text-light);transition:color .2s}
+.nav-logo a:hover{color:var(--accent)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-link{
+  font-size:12px;letter-spacing:0.5px;color:var(--text-light);
+  padding:6px 14px;border-radius:4px;transition:all .2s;font-weight:500;
+}
+.nav-link:hover{color:var(--text);background:rgba(0,0,0,0.04)}
+.nav-link.accent{color:var(--green);border:1px solid rgba(45,122,79,0.2)}
+.nav-link.accent:hover{background:rgba(45,122,79,0.06)}
+@media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="/">SAM KUO</a></div>
+  <div class="nav-links">
+    <a href="/" class="nav-link">首頁</a>
+    <a href="/coach" class="nav-link">教練方案</a>
+    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent">免費諮詢</a>
+  </div>
+</nav>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="padding-top:clamp(120px,20vh,180px)">
 <div class="wrap">
   <p class="hero-eyebrow">專為美業打造</p>
   <h1>客人用 LINE 預約。<br>你用 LINE <span>管整間店</span>。</h1>
