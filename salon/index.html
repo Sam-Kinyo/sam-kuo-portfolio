@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17808239126"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17808239126');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>髮廊預約系統｜LINE 預約 × 自動排班 × 營收管理｜免費諮詢</title>
 <meta name="description" content="專為髮廊、美甲、美睫、SPA 打造的 LINE 預約管理系統。顧客用 LINE 預約，設計師用 LINE 管班表，老闆用 LINE 看營收。">
@@ -350,9 +365,34 @@ nav{
 .nav-link.accent{color:var(--green);border:1px solid rgba(45,122,79,0.2)}
 .nav-link.accent:hover{background:rgba(45,122,79,0.06)}
 @media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
+/* ─── Floating LINE CTA ─── */
+.floating-cta{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  width:60px;height:60px;background:#06C755;border-radius:50%;
+  box-shadow:0 8px 24px rgba(6,199,85,0.3);
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+  animation:floatBounce 3s ease-in-out infinite;
+}
+.floating-cta:hover{
+  transform:translateY(-4px);box-shadow:0 12px 32px rgba(6,199,85,0.4);
+}
+.floating-cta svg{width:32px;height:32px;fill:#fff;}
+@keyframes floatBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@media(max-width:600px){
+  .floating-cta{bottom:20px;right:20px;width:52px;height:52px;}
+  .floating-cta svg{width:28px;height:28px;}
+}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav>
@@ -361,7 +401,7 @@ nav{
     <a href="/" class="nav-link">首頁</a>
     <a href="/coach" class="nav-link">教練方案</a>
     <a href="/group" class="nav-link">社群團報</a>
-    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent">免費諮詢</a>
+    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent" id="cta-nav-line">免費諮詢</a>
   </div>
 </nav>
 
@@ -374,7 +414,7 @@ nav{
     不用下載 App、不用教客人操作。<br>
     預約、排班、營收、拆帳，全部在 LINE 裡搞定。
   </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line">免費諮詢，聊聊你的需求 →</a>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line" id="cta-hero-line">免費諮詢，聊聊你的需求 →</a>
   <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
 </div>
 </section>
@@ -516,7 +556,7 @@ nav{
         <li>價目表展示</li>
         <li>休假日曆</li>
       </ul>
-      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary">免費諮詢</a>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary" id="cta-price1-line">免費諮詢</a>
     </div>
     <div class="price-col highlight">
       <div class="price-tier">完整方案</div>
@@ -530,7 +570,7 @@ nav{
         <li>顧客備註系統</li>
         <li>客製化報表</li>
       </ul>
-      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary">免費諮詢</a>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary" id="cta-price2-line">免費諮詢</a>
     </div>
   </div>
 </div>
@@ -557,7 +597,7 @@ nav{
 <div class="wrap">
   <h2 class="reveal">你的店值得一套<br>客人真的會用的預約系統。</h2>
   <p class="reveal">30 分鐘免費諮詢，聊聊你的需求。<br>不適合會直接說。</p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line reveal">加 LINE 免費諮詢 →</a>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line reveal" id="cta-footer-line">加 LINE 免費諮詢 →</a>
   <div class="final-contact reveal">
     <span>LINE：0985266991</span>
     <span>Email：tinghowkuo@gmail.com</span>
@@ -585,5 +625,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 </script>
+<!-- ═══════════ FLOATING CTA ═══════════ -->
+<a href="https://line.me/ti/p/W_kON8x9Tw" class="floating-cta" id="cta-line-float" title="加 LINE 諮詢" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M23.146 10.362c0-4.38-4.408-7.946-9.824-7.946-5.416 0-9.824 3.567-9.824 7.946 0 3.931 3.513 7.234 8.28 7.859.324.068.756.208.865.485.099.25-.032.645-.064.896l-.16 1.002c-.049.303-.23.903.784.476 1.014-.427 5.483-3.23 7.55-5.591.758-.87 1.393-2.029 1.393-3.127zm-13.844.75h-2.147v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v2.744h1.101c.289 0 .523.234.523.523s-.234.523-.523.523zm3.176 0h-1.046c-.289 0-.523-.234-.523-.523v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v3.79c0 .289-.234.523-.523.523zm3.033-2.181l-1.396-1.579c-.214-.241-.531-.38-.857-.38h-.002c-.289 0-.523.234-.523.523v3.79c0 .289.234.523.523.523s.523-.234.523-.523v-1.637l1.396 1.576c.214.241.531.38.857.38h.002c.289 0 .523-.234.523-.523v-3.79c0-.289-.234-.523-.523-.523s-.523.234-.523.523v1.64z"/></svg>
+</a>
+
 </body>
 </html>
