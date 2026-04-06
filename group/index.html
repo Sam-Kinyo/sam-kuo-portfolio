@@ -64,6 +64,50 @@ body::after{
 .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,48px)}
 .divider{height:1px;background:var(--line-color);margin:0}
 
+/* ═══ PHONE MOCKUP & NEW LAYOUTS ═══ */
+.phone-mockup{
+  position:relative;width:100%;max-width:320px;margin:0 auto;
+  background:#000;border-radius:40px;padding:12px;box-shadow:0 24px 64px rgba(0,0,0,0.15), inset 0 0 0 2px #444;
+  animation:float 6s ease-in-out infinite;
+}
+.phone-mockup::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:120px;height:24px;background:#000;border-bottom-left-radius:16px;border-bottom-right-radius:16px;
+  z-index:2;
+}
+.phone-mockup img{
+  width:100%;height:auto;border-radius:32px;display:block;
+  object-fit:cover;object-position:top;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:center;
+}
+@media(min-width:800px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:64px}
+  .hero-grid .phone-mockup{margin-left:auto;margin-right:0}
+}
+.feat-row{
+  display:grid;grid-template-columns:1fr;gap:40px;align-items:center;
+  margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--line-color);
+}
+.feat-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+@media(min-width:800px){
+  .feat-row{grid-template-columns:1fr 1fr;gap:80px}
+  .feat-row.reverse .feat-text{order:2}
+  .feat-row.reverse .feat-img{order:1}
+}
+.feat-text h3{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:900;margin-bottom:16px;line-height:1.4}
+.feat-text p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:24px}
+.feat-list{list-style:none;margin-bottom:0}
+.feat-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.feat-list li::before{content:'✓';color:var(--accent);font-weight:900}
+.feat-list-title{font-weight:700;display:block;margin-bottom:4px;color:var(--text)}
+.feat-list-desc{font-size:14px;color:var(--text-sub);line-height:1.6}
+
 /* ═══ NAV ═══ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -387,17 +431,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="padding-top:clamp(120px,20vh,180px)">
 <div class="wrap">
-  <p class="hero-eyebrow">專為社團 × 球隊 × 社群打造</p>
-  <h1>群組接龍報名？<br>換成 <span>一鍵搞定</span>。</h1>
-  <p class="hero-body">
-    不用再數人頭、不用再問「+1 是誰」。<br>
-    報名、候補、分組、提醒——Bot 在群組裡全自動處理。<br>
-    你只需要專心辦活動。
-  </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta" id="cta-hero-line">免費諮詢，聊聊你的需求 →</a>
-  <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+  <div class="hero-grid">
+    <div class="hero-text">
+       <p class="hero-eyebrow">專為社團 × 球隊 × 社群打造</p>
+       <h1>群組接龍報名？<br>換成 <span>一鍵搞定</span>。</h1>
+       <p class="hero-body">
+         不用再數人頭、不用再問「+1 是誰」。<br>
+         報名、候補、分組、提醒——提供最頂級的 Web 與 LINE 雙介面。<br>
+         你只需要專心辦好活動。
+       </p>
+       <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta" id="cta-hero-line">馬上看 DEMO 與免費諮詢 →</a>
+       <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 無額外隱藏費用</p>
+    </div>
+    <div class="hero-image reveal">
+      <div class="phone-mockup">
+        <img src="images/group-hero.jpg" alt="球敘列表 Web 版">
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -466,39 +519,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
   <p class="section-tag reveal">解決方案</p>
   <h2 class="reveal">把 Bot 丟進群組，<br>報名這件事就不用再管了。</h2>
-  <p class="features-intro reveal">成員在群組裡按按鈕就好。<br>不用加好友、不用離開群組、不用學新東西。</p>
-  <div class="feat-grid">
-    <div class="feat reveal">
-      <h3>一鍵報名 / 取消</h3>
-      <p>Flex Message 卡片按鈕，點一下就報名、點一下就取消。不用打字、不用+1、不會被洗掉。</p>
+  <p class="features-intro reveal">最高質感的 Web 介面與最輕量的 LINE 卡片雙重結合。<br>不用加好友、不用離開群組、不用學新東西。</p>
+
+  <!-- Feature 1: LINE quick booking -->
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>直覺的一鍵報名卡片，<br>徹底告別群組接龍</h3>
+      <p>成員在群組裡按按鈕就好，不用打字、不用「+1」，不怕被對話洗掉。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">清爽不洗版的 Flex Message</span>
+          <span class="feat-list-desc">直式卡片介面提供一目了然的早午球時段，點擊綠色按鈕直接報名成功。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">即時名單查詢</span>
+          <span class="feat-list-desc">一鍵呼叫已報名單，誰報名了一清二楚，隨時保持數字正確性。</span>
+        </li>
+      </ul>
     </div>
-    <div class="feat reveal">
-      <h3>候補自動遞補</h3>
-      <p>額滿自動進候補排隊。有人取消，候補第一位自動遞補並收到 LINE 推播通知。完全不用你處理。</p>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/group-feat1.jpg" alt="LINE 極速報名卡片">
+      </div>
     </div>
-    <div class="feat reveal">
-      <h3>同組管理</h3>
-      <p>報名時可以選「跟誰同組」，系統自動標記組別。超過每組人數上限會警告。不用手動排。</p>
+  </div>
+
+  <!-- Feature 2: Web detailed friends & groups -->
+  <div class="feat-row reverse">
+    <div class="feat-text reveal">
+      <h3>朋友代報與分組，<br>強大的同組管理機制</h3>
+      <p>「我要跟王大明同車/同組」這種需求，主辦方再也不用手寫 Excel 記到半夜。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">極致完美的填寫體驗</span>
+          <span class="feat-list-desc">串接高階 Web 介面，無論是自己報名、帶朋友，或是代人報名，邏輯流暢清晰。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">自動標記組別與上限</span>
+          <span class="feat-list-desc">名單自動依據車輛或組別分配，超過上限還會自動警告。</span>
+        </li>
+      </ul>
     </div>
-    <div class="feat reveal">
-      <h3>代報 / 代取消</h3>
-      <p>幫沒加 Bot 的朋友報名，系統自動標記「誰幫誰報的」。取消也一樣，紀錄清清楚楚。</p>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/group-feat2.jpg" alt="Web 版朋友代報與分組">
+      </div>
     </div>
-    <div class="feat reveal">
-      <h3>AI 自然語言操作</h3>
-      <p>成員直接說「幫我報下週日的球敘」，AI 自動辨識場次並報名。不會用按鈕的人也能用。</p>
+  </div>
+
+  <!-- Feature 3: LINE push / cancel -->
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>防手滑的取消確認，<br>候補名單全自動遞補</h3>
+      <p>取消有確認機制防堵失誤。當有人退坑，下一個候補會自動卡位，完全零人工操作。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">全自動遞補與推播</span>
+          <span class="feat-list-desc">有人取消，候補第一位自動遞補並收到 LINE 推播通知，絕不漏接。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">AI 自然語言操作支援</span>
+          <span class="feat-list-desc">連介面都不會看的長輩？直接對聊天室說「我要取消下禮拜的球敘」，系統一樣秒懂處理。</span>
+        </li>
+      </ul>
     </div>
-    <div class="feat reveal">
-      <h3>自動提醒 + 名單公告</h3>
-      <p>截止前自動提醒、前一晚自動推送完整名單到群組、當天早上再推一次。管理者什麼都不用做。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>即時統計報表</h3>
-      <p>正取幾人、候補幾人、取消幾人、分幾組——隨時查，數字永遠是對的。</p>
-    </div>
-    <div class="feat reveal">
-      <h3>會員審核機制</h3>
-      <p>新成員加入需填本名 + 審核。管理員收到 Email 一鍵核准或拒絕。防止不認識的人亂報。</p>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/group-feat3.jpg" alt="確認取消與候補遞補體驗">
+      </div>
     </div>
   </div>
 </div>
