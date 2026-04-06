@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教練預約管理系統｜LINE 預約 × 堂數管理 × 自動提醒｜免費諮詢</title>
+<meta name="description" content="專為教練、老師、工作室打造的 LINE 預約管理系統。學員用 LINE 預約，教練用 LINE 管課表，堂數自動扣、到期自動提醒。不用下載 App。">
+<meta name="keywords" content="教練預約系統,高爾夫教練,課程管理系統,LINE預約,堂數管理,健身教練預約,瑜伽預約系統,音樂教室預約">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#F8F9F6;
+  --bg-alt:#EFF1EB;
+  --bg-dark:#1A2118;
+  --surface:#FFFFFF;
+  --text:#1A2118;
+  --text-sub:#525B4E;
+  --text-light:#8A9184;
+  --line-color:#DEE1D8;
+  --accent:#2D6B3F;
+  --accent-hover:#358A4D;
+  --gold:#8B7A2E;
+  --gold-hover:#A69236;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-weight:400;
+  line-height:1.8;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--accent);color:#fff}
+a{color:inherit;text-decoration:none}
+
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,48px)}
+.divider{height:1px;background:var(--line-color);margin:0}
+
+/* ═══ HERO ═══ */
+.hero{padding:clamp(100px,18vh,180px) 0 clamp(60px,10vh,100px)}
+.hero-eyebrow{
+  font-size:13px;font-weight:500;letter-spacing:3px;
+  color:var(--accent);margin-bottom:24px;
+  opacity:0;animation:up .7s var(--ease-out) .15s forwards;
+}
+.hero h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(32px,6.5vw,58px);line-height:1.25;
+  letter-spacing:-0.02em;margin-bottom:28px;
+  opacity:0;animation:up .7s var(--ease-out) .3s forwards;
+}
+.hero h1 span{color:var(--accent)}
+.hero-body{
+  max-width:500px;font-size:clamp(15px,1.6vw,17px);
+  color:var(--text-sub);line-height:1.85;margin-bottom:40px;
+  opacity:0;animation:up .7s var(--ease-out) .45s forwards;
+}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 32px;background:var(--accent);color:#fff;
+  font-size:15px;font-weight:700;border-radius:6px;
+  border:none;cursor:pointer;transition:background .25s,transform .25s;
+  opacity:0;animation:up .7s var(--ease-out) .6s forwards;
+}
+.btn-cta:hover{background:var(--accent-hover);transform:translateY(-1px);color:#fff}
+.hero-note{
+  margin-top:14px;font-size:12px;color:var(--text-light);
+  opacity:0;animation:up .7s var(--ease-out) .7s forwards;
+}
+
+/* ═══ WHO ═══ */
+.who{padding:clamp(64px,10vh,100px) 0}
+.section-tag{
+  font-size:12px;font-weight:700;letter-spacing:3px;
+  color:var(--text-light);text-transform:uppercase;margin-bottom:20px;
+}
+.who h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;max-width:520px;
+}
+.who-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:0;border-top:1px solid var(--line-color);
+  border-bottom:1px solid var(--line-color);
+}
+.who-item{
+  padding:24px 20px;border-right:1px solid var(--line-color);
+}
+.who-item:last-child{border-right:none}
+@media(max-width:500px){
+  .who-grid{grid-template-columns:1fr 1fr}
+  .who-item:nth-child(2){border-right:none}
+  .who-item:nth-child(3),.who-item:nth-child(4){border-top:1px solid var(--line-color)}
+}
+.who-icon{font-size:28px;margin-bottom:10px}
+.who-item h3{font-size:15px;font-weight:700}
+.who-item p{font-size:13px;color:var(--text-sub);margin-top:4px}
+
+/* ═══ PROBLEMS ═══ */
+.problems{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.problems h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;max-width:500px;
+}
+.problem-row{
+  display:grid;grid-template-columns:1fr;gap:0;
+  border-top:1px solid var(--line-color);
+}
+@media(min-width:640px){.problem-row{grid-template-columns:200px 1fr}}
+.problem-item{display:contents}
+.problem-item .p-label{
+  padding:24px 0;font-weight:700;font-size:14px;
+  border-bottom:1px solid var(--line-color);
+}
+.problem-item .p-desc{
+  padding:24px 0;font-size:15px;color:var(--text-sub);line-height:1.75;
+  border-bottom:1px solid var(--line-color);
+}
+@media(max-width:639px){
+  .problem-item .p-label{padding-bottom:4px;border-bottom:none}
+  .problem-item .p-desc{padding-top:0}
+}
+
+/* ═══ FEATURES ═══ */
+.features{padding:clamp(64px,10vh,100px) 0}
+.features h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:16px;
+}
+.features-intro{
+  font-size:15px;color:var(--text-sub);max-width:460px;
+  margin-bottom:48px;line-height:1.8;
+}
+.feat-grid{
+  display:grid;grid-template-columns:1fr;gap:40px;
+}
+@media(min-width:640px){.feat-grid{grid-template-columns:1fr 1fr;gap:32px 48px}}
+.feat{position:relative;padding-left:20px}
+.feat::before{
+  content:'';position:absolute;left:0;top:6px;
+  width:3px;height:24px;background:var(--accent);border-radius:2px;
+}
+.feat h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.feat p{font-size:14px;color:var(--text-sub);line-height:1.75}
+
+/* ═══ PROCESS ═══ */
+.process{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.process h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;
+}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--line-color);
+  border-bottom:1px solid var(--line-color);
+}
+@media(max-width:700px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.steps{grid-template-columns:1fr}}
+.step-item{padding:28px 20px;border-right:1px solid var(--line-color)}
+.step-item:last-child{border-right:none}
+@media(max-width:700px){
+  .step-item:nth-child(2){border-right:none}
+  .step-item:nth-child(3),.step-item:nth-child(4){border-top:1px solid var(--line-color)}
+}
+@media(max-width:420px){
+  .step-item{border-right:none}
+  .step-item+.step-item{border-top:1px solid var(--line-color)}
+}
+.step-num{
+  font-family:var(--serif);font-size:28px;font-weight:900;
+  color:var(--accent);line-height:1;margin-bottom:14px;
+}
+.step-item h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.step-item p{font-size:13px;color:var(--text-sub);line-height:1.65}
+
+/* ═══ VOICES ═══ */
+.voices{padding:clamp(64px,10vh,100px) 0}
+.voices h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;
+}
+.voice-list{display:flex;flex-direction:column;gap:32px}
+.voice{
+  display:grid;grid-template-columns:1fr;gap:12px;
+  padding-bottom:32px;border-bottom:1px solid var(--line-color);
+}
+.voice:last-child{border-bottom:none;padding-bottom:0}
+@media(min-width:640px){.voice{grid-template-columns:1fr 200px;gap:24px}}
+.voice blockquote{
+  font-family:var(--serif);font-size:clamp(16px,2vw,19px);
+  font-weight:400;line-height:1.7;font-style:italic;
+}
+.voice-who{
+  font-size:13px;color:var(--text-light);
+  display:flex;flex-direction:column;gap:2px;justify-content:flex-end;
+}
+.voice-who strong{color:var(--text-sub);font-weight:700;font-style:normal}
+
+/* ═══ PRICING ═══ */
+.pricing{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.pricing h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;margin-bottom:8px;
+}
+.pricing-sub{font-size:15px;color:var(--text-sub);margin-bottom:48px}
+.price-table{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--line-color);border-radius:8px;
+  overflow:hidden;background:var(--surface);
+}
+@media(max-width:600px){.price-table{grid-template-columns:1fr}}
+.price-col{padding:clamp(28px,4vw,40px)}
+.price-col+.price-col{border-left:1px solid var(--line-color)}
+@media(max-width:600px){.price-col+.price-col{border-left:none;border-top:1px solid var(--line-color)}}
+.price-col.highlight{background:var(--bg-alt);position:relative}
+.price-col.highlight::before{
+  content:'推薦';position:absolute;top:16px;right:16px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:3px 10px;background:var(--accent);color:#fff;border-radius:3px;
+}
+.price-tier{font-size:13px;font-weight:700;color:var(--text-light);letter-spacing:1px;margin-bottom:8px}
+.price-num{
+  font-family:var(--serif);font-size:clamp(32px,5vw,40px);
+  font-weight:900;line-height:1.1;margin-bottom:4px;
+}
+.price-num small{font-size:14px;font-weight:400;color:var(--text-sub)}
+.price-note{font-size:13px;color:var(--text-light);margin-bottom:24px}
+.price-list{list-style:none;margin-bottom:28px}
+.price-list li{
+  font-size:14px;color:var(--text-sub);padding:8px 0;
+  border-bottom:1px solid var(--line-color);
+  display:flex;align-items:baseline;gap:8px;line-height:1.5;
+}
+.price-list li::before{content:'—';color:var(--accent);font-weight:700;flex-shrink:0}
+.price-btn{
+  display:block;width:100%;padding:13px;text-align:center;
+  font-size:14px;font-weight:700;border-radius:6px;
+  border:none;cursor:pointer;transition:all .25s;
+}
+.price-btn-primary{background:var(--accent);color:#fff}
+.price-btn-primary:hover{background:var(--accent-hover)}
+.price-btn-secondary{background:transparent;color:var(--text);border:1px solid var(--line-color)}
+.price-btn-secondary:hover{border-color:var(--text)}
+
+/* ═══ FAQ ═══ */
+.faq{padding:clamp(64px,10vh,100px) 0}
+.faq h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;margin-bottom:48px;
+}
+.faq-list{max-width:640px}
+.faq-item{border-bottom:1px solid var(--line-color)}
+.faq-q{
+  padding:20px 0;font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-q::after{
+  content:'+';font-size:22px;color:var(--text-light);
+  transition:transform .3s var(--ease-out);flex-shrink:0;
+}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease-out)}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding-bottom:20px;font-size:14px;color:var(--text-sub);line-height:1.8}
+
+/* ═══ FINAL ═══ */
+.final{padding:clamp(80px,14vh,120px) 0;background:var(--bg-dark);color:#fff}
+.final h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(24px,4.5vw,38px);line-height:1.35;margin-bottom:16px;
+}
+.final p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:36px;max-width:420px;line-height:1.8}
+.final .btn-cta{background:var(--accent);font-size:16px;padding:16px 36px}
+.final .btn-cta:hover{background:var(--accent-hover)}
+.final-contact{
+  margin-top:32px;font-size:13px;color:rgba(255,255,255,.3);
+  display:flex;gap:24px;flex-wrap:wrap;
+}
+
+footer{
+  padding:24px 0;background:var(--bg-dark);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+footer p{font-size:11px;color:rgba(255,255,255,.2);text-align:center}
+footer a{color:rgba(255,255,255,.3)}
+footer a:hover{color:rgba(255,255,255,.5)}
+
+@keyframes up{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
+}
+.reveal.v{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="wrap">
+  <p class="hero-eyebrow">專為教練 × 老師 × 工作室打造</p>
+  <h1>學員用 LINE 預約。<br>你用 LINE <span>管所有課</span>。</h1>
+  <p class="hero-body">
+    不用下載 App、不用建網站。<br>
+    預約、審核、堂數、排班、提醒——全部在 LINE 裡搞定。<br>
+    你只需要專心教課。
+  </p>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta">免費諮詢，聊聊你的需求 →</a>
+  <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+</div>
+</section>
+
+<hr class="divider">
+
+<!-- WHO IS THIS FOR -->
+<section class="who">
+<div class="wrap">
+  <p class="section-tag reveal">適用對象</p>
+  <h2 class="reveal">只要你的工作是<br>「一對一或小班制教課」。</h2>
+  <div class="who-grid">
+    <div class="who-item reveal">
+      <div class="who-icon">⛳</div>
+      <h3>高爾夫教練</h3>
+      <p>練習場、球場教學</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">💪</div>
+      <h3>健身教練</h3>
+      <p>私人教練、團課</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">🧘</div>
+      <h3>瑜伽 / 皮拉提斯</h3>
+      <p>工作室、個人教室</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">🎹</div>
+      <h3>音樂 / 才藝老師</h3>
+      <p>鋼琴、吉他、繪畫</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="divider">
+
+<!-- PROBLEMS -->
+<section class="problems">
+<div class="wrap">
+  <p class="section-tag reveal">你是不是也這樣？</p>
+  <h2 class="reveal">明明該專心教課，<br>卻花一堆時間在行政瑣事上。</h2>
+  <div class="problem-row">
+    <div class="problem-item reveal">
+      <div class="p-label">預約靠 LINE 接龍</div>
+      <div class="p-desc">學員傳「老師週三下午有空嗎」，你翻行事曆、回覆、再確認。一來一回就十分鐘。乘以十個學員，一天就沒了。</div>
+    </div>
+    <div class="problem-item reveal">
+      <div class="p-label">堂數算到頭痛</div>
+      <div class="p-desc">誰買了幾堂、用了幾堂、什麼時候到期——用筆記本記或開 Excel，每次上課前都要翻一次，還怕記錯。</div>
+    </div>
+    <div class="problem-item reveal">
+      <div class="p-label">學員爽約沒通知</div>
+      <div class="p-desc">到了上課時間人沒來，打電話才知道忘記了。你的時間被浪費，那個時段也空掉了。</div>
+    </div>
+    <div class="problem-item reveal">
+      <div class="p-label">排班撞課常發生</div>
+      <div class="p-desc">固定班跟臨時約的撞在一起，或是忘了自己那天請假還讓學員約進來。出包一次信任就掉一截。</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+<div class="wrap">
+  <p class="section-tag reveal">解決方案</p>
+  <h2 class="reveal">學員在 LINE 裡預約，<br>你在 LINE 裡管所有事。</h2>
+  <p class="features-intro reveal">學員本來就在用 LINE 找你。<br>不需要他下載新的 App，也不需要你學新的後台。</p>
+  <div class="feat-grid">
+    <div class="feat reveal">
+      <h3>學員 LINE 預約</h3>
+      <p>學員在 LINE 裡選日期、時段、課程類型，一鍵送出。你收到通知後一鍵核准或改時間。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>堂數自動管理</h3>
+      <p>學員買課自動入帳，上課自動扣堂。先到期的先扣，剩餘堂數即時查。不用再手動記帳。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>固定排班 + 休假</h3>
+      <p>設定每週固定課表，系統自動展開。臨時請假一鍵設定，該時段自動阻擋預約。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>自動提醒</h3>
+      <p>上課前一天晚上自動推播提醒學員，附上地點導航連結。爽約率直接降下來。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>教練行程彙整</h3>
+      <p>每天晚上自動收到明日課表摘要，幾點在哪裡教誰，一目了然。不用再翻行事曆。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>到期提醒</h3>
+      <p>課程包到期前 30 天自動通知學員續購。不用你開口催，系統幫你做。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+<div class="wrap">
+  <p class="section-tag reveal">導入流程</p>
+  <h2 class="reveal">從聊天到上線，最快一週。</h2>
+  <div class="steps">
+    <div class="step-item reveal">
+      <div class="step-num">01</div>
+      <h3>免費諮詢</h3>
+      <p>聊聊你目前怎麼管課、哪些事情最花時間。</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">02</div>
+      <h3>客製規劃</h3>
+      <p>根據你的教學模式設計功能，不多做用不到的。</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">03</div>
+      <h3>開發上線</h3>
+      <p>快速建置、你先試用、調到滿意再正式啟用。</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">04</div>
+      <h3>持續維護</h3>
+      <p>上線後有問題隨時找我，功能也可以慢慢加。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- VOICES -->
+<section class="voices">
+<div class="wrap">
+  <p class="section-tag reveal">教練回饋</p>
+  <h2 class="reveal">他們已經在用了。</h2>
+  <div class="voice-list">
+    <div class="voice reveal">
+      <blockquote>以前每天花一小時處理預約訊息，現在學員自己約、系統自動擋衝堂，我只要按確認就好。多出來的時間可以多排一堂課。</blockquote>
+      <div class="voice-who"><strong>高爾夫教練</strong><span>個人工作室</span></div>
+    </div>
+    <div class="voice reveal">
+      <blockquote>堂數管理是我最頭痛的事。現在學員自己查剩幾堂、什麼時候到期，不用再一個一個回。到期前系統還會自動提醒他們續購。</blockquote>
+      <div class="voice-who"><strong>健身教練</strong><span>30+ 位學員</span></div>
+    </div>
+    <div class="voice reveal">
+      <blockquote>學員說用 LINE 就能約課超方便，不用下載新的 App。爽約的狀況也少很多，因為前一天會自動提醒。</blockquote>
+      <div class="voice-who"><strong>瑜伽老師</strong><span>小班制教學</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING -->
+<section class="pricing">
+<div class="wrap">
+  <p class="section-tag reveal">費用</p>
+  <h2 class="reveal">透明報價，沒有隱藏費用。</h2>
+  <p class="pricing-sub reveal">先聊需求，確認適合再開始。不適合我會直接說。</p>
+  <div class="price-table reveal">
+    <div class="price-col">
+      <div class="price-tier">基本方案</div>
+      <div class="price-num">$30,000 <small>起</small></div>
+      <div class="price-note">一次性建置費</div>
+      <ul class="price-list">
+        <li>LINE 預約 + 教練審核</li>
+        <li>固定排班管理</li>
+        <li>休假自動阻擋</li>
+        <li>上課前自動提醒</li>
+        <li>學員查詢預約</li>
+      </ul>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary">免費諮詢</a>
+    </div>
+    <div class="price-col highlight">
+      <div class="price-tier">完整方案</div>
+      <div class="price-num">$55,000 <small>起</small></div>
+      <div class="price-note">一次性建置費</div>
+      <ul class="price-list">
+        <li>基本方案全部功能</li>
+        <li>堂數自動管理</li>
+        <li>到期提醒通知</li>
+        <li>教練每日行程彙整</li>
+        <li>教練後台（LIFF）</li>
+        <li>學員上課紀錄查詢</li>
+      </ul>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary">免費諮詢</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+<div class="wrap">
+  <p class="section-tag reveal">常見問題</p>
+  <h2 class="reveal">你可能想問的。</h2>
+  <div class="faq-list">
+    <div class="faq-item reveal"><div class="faq-q">學員需要下載 App 嗎？</div><div class="faq-a"><div class="faq-a-inner">完全不用。所有操作都在 LINE 裡面完成。學員加你的 LINE Bot 好友就能開始預約，不用註冊帳號、不用下載任何東西。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">我同時教很多學員，系統會不會撞課？</div><div class="faq-a"><div class="faq-a-inner">不會。系統會自動檢查時段衝突，包含固定排班、已核准的預約、休假時段，全部自動擋。學員只看得到真正有空的時段。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">我在不同地點教課，可以用嗎？</div><div class="faq-a"><div class="faq-a-inner">可以。系統支援多地點，學員預約時選地點，提醒通知會附上 Google Maps 導航連結。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">堂數怎麼扣？會不會扣錯？</div><div class="faq-a"><div class="faq-a-inner">扣堂必須由教練手動確認，系統不會自動扣。扣的時候會自動選快到期的先扣，每一筆都有紀錄可以追溯。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">建置要多久？</div><div class="faq-a"><div class="faq-a-inner">基本方案大約 1-2 週，完整方案 2-3 週。過程中你可以隨時測試、提修改意見。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">上線之後有維護嗎？</div><div class="faq-a"><div class="faq-a-inner">建置費包含一個月免費維護。之後可選月付維護方案（$2,000-5,000/月），有問題隨時處理，功能也可以慢慢加。</div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+<div class="wrap">
+  <h2 class="reveal">你的時間應該花在教課，<br>不是處理行政瑣事。</h2>
+  <p class="reveal">30 分鐘免費諮詢，聊聊你的狀況。<br>不適合會直接說。</p>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal">加 LINE 免費諮詢 →</a>
+  <div class="final-contact reveal">
+    <span>LINE：0985266991</span>
+    <span>Email：tinghowkuo@gmail.com</span>
+  </div>
+</div>
+</section>
+
+<footer><p>© 2026 Sam Kuo · <a href="https://samkuo.com">samkuo.com</a></p></footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const it=q.parentElement;
+      const open=it.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!open)it.classList.add('open');
+    });
+  });
+});
+</script>
+</body>
+</html>
