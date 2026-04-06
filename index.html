@@ -88,9 +88,9 @@ nav{
 /* ─── Solutions Section ─── */
 .solutions{padding:clamp(60px,10vh,100px) 0;border-top:1px solid #1a1a1a}
 .solutions-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
 }
-@media(max-width:600px){.solutions-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.solutions-grid{grid-template-columns:1fr}}
 .solution-card{
   background:var(--bg-card);border:1px solid #1a1a1a;
   padding:clamp(28px,4vw,40px);border-radius:2px;
@@ -391,7 +391,7 @@ footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
     <div class="case-inner">
       <div class="case-meta">
         <div class="case-number">02</div>
-        <div class="case-client">台灣小家電領導品牌</div>
+        <div class="case-client">台灣小家電霸主</div>
         <div class="case-industry">B2B 企業採購</div>
       </div>
       <div class="case-body">
@@ -545,6 +545,12 @@ footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
       <div class="solution-tag">教練方案</div>
       <h3>高爾夫 · 健身 · 瑜伽 · 才藝</h3>
       <p>學員用 LINE 預約，教練一鍵核准，堂數自動扣、到期自動提醒。你只需要專心教課。</p>
+      <span class="solution-link">查看完整方案 →</span>
+    </a>
+    <a href="/group" class="solution-card reveal">
+      <div class="solution-tag">社群團報方案</div>
+      <h3>球敘 · 登山 · 車隊 · 球類社團</h3>
+      <p>群組裡按按鈕就報名，候補自動遞補，同組管理、AI 操作、自動公告。告別混亂的接龍。</p>
       <span class="solution-link">查看完整方案 →</span>
     </a>
   </div>

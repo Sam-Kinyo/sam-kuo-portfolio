@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>髮廊預約系統｜LINE 預約 × 自動排班 × 營收管理｜免費諮詢</title>
-<meta name="description" content="專為髮廊、美甲、美睫、SPA 打造的 LINE 預約管理系統。顧客用 LINE 預約，設計師用 LINE 管班表，老闆用 LINE 看營收。">
-<meta name="keywords" content="髮廊預約系統,美容院預約,LINE預約,美業管理系統,髮廊排班,線上預約系統,美甲預約,美睫預約">
+<title>社群團報系統｜LINE 一鍵報名 × 候補遞補 × 自動分組｜免費諮詢</title>
+<meta name="description" content="專為球敘、登山隊、車隊、運動社團打造的 LINE 團報管理系統。一鍵報名、候補自動遞補、同組管理、AI 自然語言操作。告別群組接龍。">
+<meta name="keywords" content="團報系統,LINE報名,球敘報名,社團報名系統,活動報名,高爾夫球敘,群組報名,線上報名系統">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -13,18 +13,18 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#FAF9F6;
-  --bg-alt:#F2F0EB;
-  --bg-dark:#1C1B18;
+  --bg:#F9F8F6;
+  --bg-alt:#F0EEEA;
+  --bg-dark:#1A1820;
   --surface:#FFFFFF;
-  --text:#1C1B18;
-  --text-sub:#5C5A54;
-  --text-light:#9C9A94;
-  --line-color:#E5E3DD;
-  --accent:#8B6914;
-  --accent-hover:#A47D1A;
-  --green:#2D7A4F;
-  --green-hover:#358F5C;
+  --text:#1A1820;
+  --text-sub:#56534E;
+  --text-light:#94918A;
+  --line-color:#E0DDD7;
+  --accent:#B85C1A;
+  --accent-hover:#D06E22;
+  --navy:#2A4365;
+  --navy-hover:#34537D;
   --serif:'Noto Serif TC',serif;
   --sans:'Noto Sans TC',sans-serif;
   --ease-out:cubic-bezier(0.16,1,0.3,1);
@@ -39,22 +39,39 @@ body{
 }
 
 ::selection{background:var(--accent);color:#fff}
-img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
-/* grain */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,48px)}
+.divider{height:1px;background:var(--line-color);margin:0}
+
+/* ═══ NAV ═══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 clamp(24px,5vw,48px);height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(249,248,246,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-color);
+}
+.nav-logo{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--text-light)}
+.nav-logo a{color:var(--text-light);transition:color .2s}
+.nav-logo a:hover{color:var(--accent)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-link{
+  font-size:12px;letter-spacing:0.5px;color:var(--text-light);
+  padding:6px 14px;border-radius:4px;transition:all .2s;font-weight:500;
+}
+.nav-link:hover{color:var(--text);background:rgba(0,0,0,0.04)}
+.nav-link.accent{color:var(--accent);border:1px solid rgba(184,92,26,0.2)}
+.nav-link.accent:hover{background:rgba(184,92,26,0.06)}
+@media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
 
 /* ═══ HERO ═══ */
-.hero{
-  padding:clamp(100px,18vh,180px) 0 clamp(60px,10vh,100px);
-  position:relative;
-}
+.hero{padding:clamp(120px,20vh,180px) 0 clamp(60px,10vh,100px)}
 .hero-eyebrow{
   font-size:13px;font-weight:500;letter-spacing:3px;
   color:var(--accent);margin-bottom:24px;
@@ -68,33 +85,52 @@ body::after{
 }
 .hero h1 span{color:var(--accent)}
 .hero-body{
-  max-width:480px;font-size:clamp(15px,1.6vw,17px);
+  max-width:500px;font-size:clamp(15px,1.6vw,17px);
   color:var(--text-sub);line-height:1.85;margin-bottom:40px;
   opacity:0;animation:up .7s var(--ease-out) .45s forwards;
 }
-.btn-line{
+.btn-cta{
   display:inline-flex;align-items:center;gap:10px;
-  padding:15px 32px;background:var(--green);color:#fff;
+  padding:15px 32px;background:var(--navy);color:#fff;
   font-size:15px;font-weight:700;border-radius:6px;
-  border:none;cursor:pointer;
-  transition:background .25s,transform .25s;
+  border:none;cursor:pointer;transition:background .25s,transform .25s;
   opacity:0;animation:up .7s var(--ease-out) .6s forwards;
 }
-.btn-line:hover{background:var(--green-hover);transform:translateY(-1px)}
+.btn-cta:hover{background:var(--navy-hover);transform:translateY(-1px);color:#fff}
 .hero-note{
   margin-top:14px;font-size:12px;color:var(--text-light);
   opacity:0;animation:up .7s var(--ease-out) .7s forwards;
 }
 
-/* ═══ DIVIDER ═══ */
-.divider{height:1px;background:var(--line-color);margin:0}
-
-/* ═══ PROBLEMS ═══ */
-.problems{padding:clamp(64px,10vh,100px) 0}
+/* ═══ WHO ═══ */
+.who{padding:clamp(64px,10vh,100px) 0}
 .section-tag{
   font-size:12px;font-weight:700;letter-spacing:3px;
   color:var(--text-light);text-transform:uppercase;margin-bottom:20px;
 }
+.who h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;max-width:520px;
+}
+.who-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:0;border-top:1px solid var(--line-color);
+  border-bottom:1px solid var(--line-color);
+}
+.who-item{padding:24px 20px;border-right:1px solid var(--line-color)}
+.who-item:last-child{border-right:none}
+@media(max-width:500px){
+  .who-grid{grid-template-columns:1fr 1fr}
+  .who-item:nth-child(2){border-right:none}
+  .who-item:nth-child(3),.who-item:nth-child(4){border-top:1px solid var(--line-color)}
+}
+.who-icon{font-size:28px;margin-bottom:10px}
+.who-item h3{font-size:15px;font-weight:700}
+.who-item p{font-size:13px;color:var(--text-sub);margin-top:4px}
+
+/* ═══ PROBLEMS ═══ */
+.problems{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
 .problems h2{
   font-family:var(--serif);font-weight:900;
   font-size:clamp(22px,3.5vw,34px);line-height:1.4;
@@ -104,16 +140,11 @@ body::after{
   display:grid;grid-template-columns:1fr;gap:0;
   border-top:1px solid var(--line-color);
 }
-@media(min-width:640px){
-  .problem-row{grid-template-columns:200px 1fr}
-}
-.problem-item{
-  display:contents;
-}
+@media(min-width:640px){.problem-row{grid-template-columns:200px 1fr}}
+.problem-item{display:contents}
 .problem-item .p-label{
   padding:24px 0;font-weight:700;font-size:14px;
   border-bottom:1px solid var(--line-color);
-  color:var(--text);
 }
 .problem-item .p-desc{
   padding:24px 0;font-size:15px;color:var(--text-sub);line-height:1.75;
@@ -124,8 +155,8 @@ body::after{
   .problem-item .p-desc{padding-top:0}
 }
 
-/* ═══ WHAT YOU GET ═══ */
-.features{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+/* ═══ FEATURES ═══ */
+.features{padding:clamp(64px,10vh,100px) 0}
 .features h2{
   font-family:var(--serif);font-weight:900;
   font-size:clamp(22px,3.5vw,34px);line-height:1.4;
@@ -138,9 +169,7 @@ body::after{
 .feat-grid{
   display:grid;grid-template-columns:1fr;gap:40px;
 }
-@media(min-width:640px){
-  .feat-grid{grid-template-columns:1fr 1fr;gap:32px 48px}
-}
+@media(min-width:640px){.feat-grid{grid-template-columns:1fr 1fr;gap:32px 48px}}
 .feat{position:relative;padding-left:20px}
 .feat::before{
   content:'';position:absolute;left:0;top:6px;
@@ -150,7 +179,7 @@ body::after{
 .feat p{font-size:14px;color:var(--text-sub);line-height:1.75}
 
 /* ═══ PROCESS ═══ */
-.process{padding:clamp(64px,10vh,100px) 0}
+.process{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
 .process h2{
   font-family:var(--serif);font-weight:900;
   font-size:clamp(22px,3.5vw,34px);line-height:1.4;
@@ -163,10 +192,7 @@ body::after{
 }
 @media(max-width:700px){.steps{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.steps{grid-template-columns:1fr}}
-.step-item{
-  padding:28px 20px;
-  border-right:1px solid var(--line-color);
-}
+.step-item{padding:28px 20px;border-right:1px solid var(--line-color)}
 .step-item:last-child{border-right:none}
 @media(max-width:700px){
   .step-item:nth-child(2){border-right:none}
@@ -184,7 +210,7 @@ body::after{
 .step-item p{font-size:13px;color:var(--text-sub);line-height:1.65}
 
 /* ═══ VOICES ═══ */
-.voices{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.voices{padding:clamp(64px,10vh,100px) 0}
 .voices h2{
   font-family:var(--serif);font-weight:900;
   font-size:clamp(22px,3.5vw,34px);line-height:1.4;
@@ -196,31 +222,24 @@ body::after{
   padding-bottom:32px;border-bottom:1px solid var(--line-color);
 }
 .voice:last-child{border-bottom:none;padding-bottom:0}
-@media(min-width:640px){
-  .voice{grid-template-columns:1fr 200px;gap:24px}
-}
+@media(min-width:640px){.voice{grid-template-columns:1fr 200px;gap:24px}}
 .voice blockquote{
   font-family:var(--serif);font-size:clamp(16px,2vw,19px);
   font-weight:400;line-height:1.7;font-style:italic;
-  color:var(--text);
 }
 .voice-who{
   font-size:13px;color:var(--text-light);
-  display:flex;flex-direction:column;gap:2px;
-  justify-content:flex-end;
+  display:flex;flex-direction:column;gap:2px;justify-content:flex-end;
 }
 .voice-who strong{color:var(--text-sub);font-weight:700;font-style:normal}
 
 /* ═══ PRICING ═══ */
-.pricing{padding:clamp(64px,10vh,100px) 0}
+.pricing{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
 .pricing h2{
   font-family:var(--serif);font-weight:900;
-  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
-  margin-bottom:8px;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;margin-bottom:8px;
 }
-.pricing-sub{
-  font-size:15px;color:var(--text-sub);margin-bottom:48px;
-}
+.pricing-sub{font-size:15px;color:var(--text-sub);margin-bottom:48px}
 .price-table{
   display:grid;grid-template-columns:1fr 1fr;gap:0;
   border:1px solid var(--line-color);border-radius:8px;
@@ -229,9 +248,7 @@ body::after{
 @media(max-width:600px){.price-table{grid-template-columns:1fr}}
 .price-col{padding:clamp(28px,4vw,40px)}
 .price-col+.price-col{border-left:1px solid var(--line-color)}
-@media(max-width:600px){
-  .price-col+.price-col{border-left:none;border-top:1px solid var(--line-color)}
-}
+@media(max-width:600px){.price-col+.price-col{border-left:none;border-top:1px solid var(--line-color)}}
 .price-col.highlight{background:var(--bg-alt);position:relative}
 .price-col.highlight::before{
   content:'熱門';position:absolute;top:16px;right:16px;
@@ -247,29 +264,26 @@ body::after{
 .price-note{font-size:13px;color:var(--text-light);margin-bottom:24px}
 .price-list{list-style:none;margin-bottom:28px}
 .price-list li{
-  font-size:14px;color:var(--text-sub);
-  padding:8px 0;border-bottom:1px solid var(--line-color);
+  font-size:14px;color:var(--text-sub);padding:8px 0;
+  border-bottom:1px solid var(--line-color);
   display:flex;align-items:baseline;gap:8px;line-height:1.5;
 }
-.price-list li::before{
-  content:'—';color:var(--accent);font-weight:700;flex-shrink:0;
-}
+.price-list li::before{content:'—';color:var(--accent);font-weight:700;flex-shrink:0}
 .price-btn{
   display:block;width:100%;padding:13px;text-align:center;
   font-size:14px;font-weight:700;border-radius:6px;
   border:none;cursor:pointer;transition:all .25s;
 }
-.price-btn-primary{background:var(--green);color:#fff}
-.price-btn-primary:hover{background:var(--green-hover)}
+.price-btn-primary{background:var(--navy);color:#fff}
+.price-btn-primary:hover{background:var(--navy-hover)}
 .price-btn-secondary{background:transparent;color:var(--text);border:1px solid var(--line-color)}
 .price-btn-secondary:hover{border-color:var(--text)}
 
 /* ═══ FAQ ═══ */
-.faq{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.faq{padding:clamp(64px,10vh,100px) 0}
 .faq h2{
   font-family:var(--serif);font-weight:900;
-  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
-  margin-bottom:48px;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;margin-bottom:48px;
 }
 .faq-list{max-width:640px}
 .faq-item{border-bottom:1px solid var(--line-color)}
@@ -284,33 +298,22 @@ body::after{
 .faq-item.open .faq-q::after{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease-out)}
 .faq-item.open .faq-a{max-height:300px}
-.faq-a-inner{
-  padding-bottom:20px;font-size:14px;
-  color:var(--text-sub);line-height:1.8;
-}
+.faq-a-inner{padding-bottom:20px;font-size:14px;color:var(--text-sub);line-height:1.8}
 
-/* ═══ FINAL CTA ═══ */
-.final{
-  padding:clamp(80px,14vh,120px) 0;
-  background:var(--bg-dark);color:#fff;
-}
+/* ═══ FINAL ═══ */
+.final{padding:clamp(80px,14vh,120px) 0;background:var(--bg-dark);color:#fff}
 .final h2{
   font-family:var(--serif);font-weight:900;
-  font-size:clamp(24px,4.5vw,38px);line-height:1.35;
-  margin-bottom:16px;
+  font-size:clamp(24px,4.5vw,38px);line-height:1.35;margin-bottom:16px;
 }
-.final p{
-  font-size:15px;color:rgba(255,255,255,.5);
-  margin-bottom:36px;max-width:400px;line-height:1.8;
-}
-.final .btn-line{background:var(--green);font-size:16px;padding:16px 36px}
-.final .btn-line:hover{background:var(--green-hover)}
+.final p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:36px;max-width:420px;line-height:1.8}
+.final .btn-cta{background:var(--navy);font-size:16px;padding:16px 36px}
+.final .btn-cta:hover{background:var(--navy-hover)}
 .final-contact{
   margin-top:32px;font-size:13px;color:rgba(255,255,255,.3);
   display:flex;gap:24px;flex-wrap:wrap;
 }
 
-/* ═══ FOOTER ═══ */
 footer{
   padding:24px 0;background:var(--bg-dark);
   border-top:1px solid rgba(255,255,255,.06);
@@ -319,7 +322,6 @@ footer p{font-size:11px;color:rgba(255,255,255,.2);text-align:center}
 footer a{color:rgba(255,255,255,.3)}
 footer a:hover{color:rgba(255,255,255,.5)}
 
-/* ═══ ANIMATIONS ═══ */
 @keyframes up{
   from{opacity:0;transform:translateY(16px)}
   to{opacity:1;transform:translateY(0)}
@@ -329,27 +331,6 @@ footer a:hover{color:rgba(255,255,255,.5)}
   transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
 }
 .reveal.v{opacity:1;transform:translateY(0)}
-
-/* ─── Nav ─── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 clamp(24px,5vw,48px);height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line-color);
-}
-.nav-logo{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--text-light)}
-.nav-logo a{color:var(--text-light);transition:color .2s}
-.nav-logo a:hover{color:var(--accent)}
-.nav-links{display:flex;gap:8px;align-items:center}
-.nav-link{
-  font-size:12px;letter-spacing:0.5px;color:var(--text-light);
-  padding:6px 14px;border-radius:4px;transition:all .2s;font-weight:500;
-}
-.nav-link:hover{color:var(--text);background:rgba(0,0,0,0.04)}
-.nav-link.accent{color:var(--green);border:1px solid rgba(45,122,79,0.2)}
-.nav-link.accent:hover{background:rgba(45,122,79,0.06)}
-@media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
 </style>
 </head>
 <body>
@@ -359,23 +340,56 @@ nav{
   <div class="nav-logo"><a href="/">SAM KUO</a></div>
   <div class="nav-links">
     <a href="/" class="nav-link">首頁</a>
+    <a href="/salon" class="nav-link">美業方案</a>
     <a href="/coach" class="nav-link">教練方案</a>
-    <a href="/group" class="nav-link">社群團報</a>
     <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent">免費諮詢</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding-top:clamp(120px,20vh,180px)">
+<section class="hero">
 <div class="wrap">
-  <p class="hero-eyebrow">專為美業打造</p>
-  <h1>客人用 LINE 預約。<br>你用 LINE <span>管整間店</span>。</h1>
+  <p class="hero-eyebrow">專為社團 × 球隊 × 社群打造</p>
+  <h1>群組接龍報名？<br>換成 <span>一鍵搞定</span>。</h1>
   <p class="hero-body">
-    不用下載 App、不用教客人操作。<br>
-    預約、排班、營收、拆帳，全部在 LINE 裡搞定。
+    不用再數人頭、不用再問「+1 是誰」。<br>
+    報名、候補、分組、提醒——Bot 在群組裡全自動處理。<br>
+    你只需要專心辦活動。
   </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line">免費諮詢，聊聊你的需求 →</a>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta">免費諮詢，聊聊你的需求 →</a>
   <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+</div>
+</section>
+
+<hr class="divider">
+
+<!-- WHO -->
+<section class="who">
+<div class="wrap">
+  <p class="section-tag reveal">適用對象</p>
+  <h2 class="reveal">只要你的社群需要<br>「定期揪團報名」。</h2>
+  <div class="who-grid">
+    <div class="who-item reveal">
+      <div class="who-icon">⛳</div>
+      <h3>高爾夫球敘</h3>
+      <p>每月固定開團、百人報名</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">🥾</div>
+      <h3>登山隊 / 路跑社</h3>
+      <p>定期出團、人數控管</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">🚴</div>
+      <h3>車隊 / 騎行團</h3>
+      <p>路線揪團、分組出發</p>
+    </div>
+    <div class="who-item reveal">
+      <div class="who-icon">🏸</div>
+      <h3>球類社團</h3>
+      <p>羽球、網球、籃球約場</p>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -385,60 +399,66 @@ nav{
 <section class="problems">
 <div class="wrap">
   <p class="section-tag reveal">你是不是也這樣？</p>
-  <h2 class="reveal">每天花時間在這些事上，<br>卻覺得應該有更好的方法。</h2>
+  <h2 class="reveal">每次開團報名，<br>光整理名單就累了半天。</h2>
   <div class="problem-row">
     <div class="problem-item reveal">
-      <div class="p-label">LINE 訊息接不完</div>
-      <div class="p-desc">客人問「明天下午有空嗎」，你一個一個回，回到手軟。忙的時候漏掉，客人就跑了。</div>
+      <div class="p-label">群組接龍數到眼花</div>
+      <div class="p-desc">「+1」「+2」「幫我朋友報」「我取消」——訊息一直洗，你往上滑半天還是不確定到底幾個人。</div>
     </div>
     <div class="problem-item reveal">
-      <div class="p-label">班表排到頭痛</div>
-      <div class="p-desc">手寫或用 Excel 排班，設計師請假要重排，臨時鎖班要通知，搞到最後自己也搞混。</div>
+      <div class="p-label">額滿候補搞不清楚</div>
+      <div class="p-desc">名額滿了還有人要報，你手動記候補順序。有人取消你要一個一個通知遞補，漏掉就被抱怨。</div>
     </div>
     <div class="problem-item reveal">
-      <div class="p-label">拆帳算到崩潰</div>
-      <div class="p-desc">月底結算每個設計師的業績、拆帳比例，靠 Excel 人工算，怕算錯又怕漏算。</div>
+      <div class="p-label">分組排不完</div>
+      <div class="p-desc">「我要跟王大明同組」「幫我換到 B 組」——需求一堆，你用 Excel 排到半夜。</div>
     </div>
     <div class="problem-item reveal">
-      <div class="p-label">其他系統客人不用</div>
-      <div class="p-desc">試過其他預約系統，但客人要下載 App 或開網頁，嫌麻煩就不用了。最後又回到 LINE 手動接。</div>
+      <div class="p-label">代報代取消一團亂</div>
+      <div class="p-desc">有人幫朋友報、有人幫家人取消，誰報的、誰取消的，群組訊息翻不到。</div>
     </div>
   </div>
 </div>
 </section>
 
-<hr class="divider">
-
 <!-- FEATURES -->
 <section class="features">
 <div class="wrap">
   <p class="section-tag reveal">解決方案</p>
-  <h2 class="reveal">不是叫客人換一個系統。<br>是讓他在 LINE 裡就完成一切。</h2>
-  <p class="features-intro reveal">你的客人本來就在用 LINE。<br>我們不改變習慣，只是讓習慣變得更有效率。</p>
+  <h2 class="reveal">把 Bot 丟進群組，<br>報名這件事就不用再管了。</h2>
+  <p class="features-intro reveal">成員在群組裡按按鈕就好。<br>不用加好友、不用離開群組、不用學新東西。</p>
   <div class="feat-grid">
     <div class="feat reveal">
-      <h3>顧客 LINE 預約</h3>
-      <p>客人在 LINE 裡看價目表、選時段、一鍵預約。不用下載 App，不用教他操作。預約完自動收到確認通知。</p>
+      <h3>一鍵報名 / 取消</h3>
+      <p>Flex Message 卡片按鈕，點一下就報名、點一下就取消。不用打字、不用+1、不會被洗掉。</p>
     </div>
     <div class="feat reveal">
-      <h3>設計師排班管理</h3>
-      <p>設計師在 LINE 裡設定休假、鎖班、查自己的行程。請假自動阻擋預約，不會再撞班。</p>
+      <h3>候補自動遞補</h3>
+      <p>額滿自動進候補排隊。有人取消，候補第一位自動遞補並收到 LINE 推播通知。完全不用你處理。</p>
     </div>
     <div class="feat reveal">
-      <h3>營收自動結算</h3>
-      <p>每次完工打卡自動記錄，日營收、月營收即時看。設計師與老闆的拆帳比例自動計算，月底不用再手動對帳。</p>
+      <h3>同組管理</h3>
+      <p>報名時可以選「跟誰同組」，系統自動標記組別。超過每組人數上限會警告。不用手動排。</p>
     </div>
     <div class="feat reveal">
-      <h3>自動提醒通知</h3>
-      <p>預約前一天自動提醒客人，減少爽約。取消預約時自動通知設計師，不會空等。</p>
+      <h3>代報 / 代取消</h3>
+      <p>幫沒加 Bot 的朋友報名，系統自動標記「誰幫誰報的」。取消也一樣，紀錄清清楚楚。</p>
     </div>
     <div class="feat reveal">
-      <h3>精緻價目表</h3>
-      <p>客人點選單就看到分類清楚的價目表。價格從後台改，LINE 即時更新。</p>
+      <h3>AI 自然語言操作</h3>
+      <p>成員直接說「幫我報下週日的球敘」，AI 自動辨識場次並報名。不會用按鈕的人也能用。</p>
     </div>
     <div class="feat reveal">
-      <h3>休假日曆公告</h3>
-      <p>客人傳「本月休假」就看到整月日曆，紅色休假、藍色半天班，一目了然。</p>
+      <h3>自動提醒 + 名單公告</h3>
+      <p>截止前自動提醒、前一晚自動推送完整名單到群組、當天早上再推一次。管理者什麼都不用做。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>即時統計報表</h3>
+      <p>正取幾人、候補幾人、取消幾人、分幾組——隨時查，數字永遠是對的。</p>
+    </div>
+    <div class="feat reveal">
+      <h3>會員審核機制</h3>
+      <p>新成員加入需填本名 + 審核。管理員收到 Email 一鍵核准或拒絕。防止不認識的人亂報。</p>
     </div>
   </div>
 </div>
@@ -453,17 +473,17 @@ nav{
     <div class="step-item reveal">
       <div class="step-num">01</div>
       <h3>免費諮詢</h3>
-      <p>聊聊你的店目前怎麼運作、哪些事情最花時間。</p>
+      <p>聊聊你的社群怎麼運作、每次開團多少人、痛點在哪。</p>
     </div>
     <div class="step-item reveal">
       <div class="step-num">02</div>
       <h3>客製規劃</h3>
-      <p>根據你的需求設計功能，不多做用不到的東西。</p>
+      <p>根據你的活動型態設計功能，不多做用不到的。</p>
     </div>
     <div class="step-item reveal">
       <div class="step-num">03</div>
       <h3>開發上線</h3>
-      <p>快速建置、測試、調整，確認沒問題再正式啟用。</p>
+      <p>快速建置，丟進群組測試，調到滿意再正式啟用。</p>
     </div>
     <div class="step-item reveal">
       <div class="step-num">04</div>
@@ -477,20 +497,20 @@ nav{
 <!-- VOICES -->
 <section class="voices">
 <div class="wrap">
-  <p class="section-tag reveal">客戶回饋</p>
+  <p class="section-tag reveal">社群回饋</p>
   <h2 class="reveal">他們已經在用了。</h2>
   <div class="voice-list">
     <div class="voice reveal">
-      <blockquote>以前月底要花一整天對帳，現在系統自動算好，我只要看數字就好。省下來的時間可以多接兩個客人。</blockquote>
-      <div class="voice-who"><strong>連鎖髮廊老闆</strong><span>3 間分店</span></div>
+      <blockquote>以前每次開團光整理名單就要一兩個小時，現在按鈕按一下就好，名單系統自動整理。我的工作量少了九成。</blockquote>
+      <div class="voice-who"><strong>高爾夫球敘主辦</strong><span>2000 人群組</span></div>
     </div>
     <div class="voice reveal">
-      <blockquote>客人說在 LINE 就能預約超方便，回頭率明顯變高。而且不用再花時間回覆「請問幾點有空」。</blockquote>
-      <div class="voice-who"><strong>美甲工作室經營者</strong></div>
+      <blockquote>候補遞補以前最頭痛，要一個一個打電話問。現在系統自動通知，我完全不用管。</blockquote>
+      <div class="voice-who"><strong>球隊管理員</strong><span>每月 10+ 場活動</span></div>
     </div>
     <div class="voice reveal">
-      <blockquote>設計師自己就能用 LINE 管班表、請假，不用再 LINE 我。我終於不是全店的客服了。</blockquote>
-      <div class="voice-who"><strong>美髮沙龍店長</strong><span>5 位設計師</span></div>
+      <blockquote>成員反應很好，說比以前接龍方便太多了。尤其是年紀大的球友，按按鈕就好，不用打字。</blockquote>
+      <div class="voice-who"><strong>社團幹部</strong><span>每場 120 人報名</span></div>
     </div>
   </div>
 </div>
@@ -510,25 +530,26 @@ nav{
       <div class="price-num">$35,000 <small>起</small></div>
       <div class="price-note">一次性建置費</div>
       <ul class="price-list">
-        <li>LINE 預約系統</li>
-        <li>設計師排班管理</li>
-        <li>自動提醒通知</li>
-        <li>價目表展示</li>
-        <li>休假日曆</li>
+        <li>一鍵報名 / 取消</li>
+        <li>候補自動遞補通知</li>
+        <li>即時名單 + 統計</li>
+        <li>截止提醒 + 自動關閉</li>
+        <li>管理員指令系統</li>
       </ul>
       <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-secondary">免費諮詢</a>
     </div>
     <div class="price-col highlight">
       <div class="price-tier">完整方案</div>
-      <div class="price-num">$60,000 <small>起</small></div>
+      <div class="price-num">$65,000 <small>起</small></div>
       <div class="price-note">一次性建置費</div>
       <ul class="price-list">
         <li>基本方案全部功能</li>
-        <li>營收自動結算</li>
-        <li>設計師拆帳計算</li>
-        <li>多分店管理</li>
-        <li>顧客備註系統</li>
-        <li>客製化報表</li>
+        <li>同組管理 + 自動分組</li>
+        <li>代報 / 代取消系統</li>
+        <li>AI 自然語言操作</li>
+        <li>會員審核機制</li>
+        <li>每日名單自動公告</li>
+        <li>Web 版報名系統</li>
       </ul>
       <a href="https://line.me/ti/p/W_kON8x9Tw" class="price-btn price-btn-primary">免費諮詢</a>
     </div>
@@ -542,12 +563,12 @@ nav{
   <p class="section-tag reveal">常見問題</p>
   <h2 class="reveal">你可能想問的。</h2>
   <div class="faq-list">
-    <div class="faq-item reveal"><div class="faq-q">客人需要下載 App 嗎？</div><div class="faq-a"><div class="faq-a-inner">完全不用。所有操作都在 LINE 裡面完成，客人只要會用 LINE 就會用。不用另外註冊帳號、不用下載任何東西。</div></div></div>
-    <div class="faq-item reveal"><div class="faq-q">我不懂技術，會不會很難操作？</div><div class="faq-a"><div class="faq-a-inner">設計師和老闆的操作全部在 LINE 裡面，打字、按按鈕就好。後台管理也會做得很簡單，我會教到你會為止。</div></div></div>
-    <div class="faq-item reveal"><div class="faq-q">建置要多久？</div><div class="faq-a"><div class="faq-a-inner">基本方案大約 1-2 週，完整方案 2-4 週，看功能複雜度。過程中你可以隨時測試、提修改意見。</div></div></div>
-    <div class="faq-item reveal"><div class="faq-q">上線之後壞了怎麼辦？</div><div class="faq-a"><div class="faq-a-inner">建置費包含上線後一個月的免費維護。之後可以選擇月付維護方案（$2,000-5,000/月），有問題隨時找我處理。</div></div></div>
-    <div class="faq-item reveal"><div class="faq-q">可以先試用嗎？</div><div class="faq-a"><div class="faq-a-inner">可以先免費諮詢，我會根據你的狀況給具體建議。如果你想看系統實際運作的樣子，我可以用 demo 帳號展示給你看。</div></div></div>
-    <div class="faq-item reveal"><div class="faq-q">跟其他預約系統有什麼不同？</div><div class="faq-a"><div class="faq-a-inner">最大的差別是「客人不用離開 LINE」。其他系統要求客人下載 App 或開網頁，流失率很高。而且我的系統是完全客製化，根據你的流程設計，不是通用模板。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">成員需要個別加 Bot 好友嗎？</div><div class="faq-a"><div class="faq-a-inner">不用。Bot 加入群組後，成員直接在群組裡按按鈕就能報名。但如果要收到候補遞補通知，建議加好友。管理員也可以代報沒加好友的人。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">可以同時管理多場活動嗎？</div><div class="faq-a"><div class="faq-a-inner">可以。系統支援同時開多場活動，每場獨立管理名額、候補、分組。成員可以同時查看所有開放報名的場次。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">每場最多幾個人？</div><div class="faq-a"><div class="faq-a-inner">沒有上限。目前實際運作最大的案例是 2000 人群組、每場 120 人報名，系統穩定運行中。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">可以客製化分組規則嗎？</div><div class="faq-a"><div class="faq-a-inner">可以。每組人數、分組方式都可以根據你的活動型態調整。高爾夫預設每組 4 人，其他運動可以自訂。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">建置要多久？</div><div class="faq-a"><div class="faq-a-inner">基本方案大約 1-2 週，完整方案 2-4 週。過程中你可以在測試群組裡試用，確認沒問題再正式上線。</div></div></div>
+    <div class="faq-item reveal"><div class="faq-q">上線之後有維護嗎？</div><div class="faq-a"><div class="faq-a-inner">建置費包含一個月免費維護。之後可選月付維護方案（$3,000-5,000/月），有問題隨時處理，活動規則調整也包含在內。</div></div></div>
   </div>
 </div>
 </section>
@@ -555,9 +576,9 @@ nav{
 <!-- FINAL CTA -->
 <section class="final">
 <div class="wrap">
-  <h2 class="reveal">你的店值得一套<br>客人真的會用的預約系統。</h2>
-  <p class="reveal">30 分鐘免費諮詢，聊聊你的需求。<br>不適合會直接說。</p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-line reveal">加 LINE 免費諮詢 →</a>
+  <h2 class="reveal">你的時間應該花在辦活動，<br>不是整理報名名單。</h2>
+  <p class="reveal">30 分鐘免費諮詢，聊聊你的社群狀況。<br>不適合會直接說。</p>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal">加 LINE 免費諮詢 →</a>
   <div class="final-contact reveal">
     <span>LINE：0985266991</span>
     <span>Email：tinghowkuo@gmail.com</span>
@@ -565,9 +586,7 @@ nav{
 </div>
 </section>
 
-<footer>
-  <p>© 2026 Sam Kuo · <a href="https://samkuo.com">samkuo.com</a></p>
-</footer>
+<footer><p>© 2026 Sam Kuo · <a href="https://samkuo.com">samkuo.com</a></p></footer>
 
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
