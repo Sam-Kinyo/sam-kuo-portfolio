@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KR7ZK383');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>企業自動化方案｜LINE Bot × AI 驅動的業務流程自動化｜免費諮詢</title>
-<meta name="description" content="用 LINE Bot + AI 把你公司最煩的流程自動化。查價報價、下單追蹤、簽核審批、報表產出、異常通知——業務人員不用離開 LINE 就能完成所有事。">
-<meta name="keywords" content="企業自動化,LINE Bot企業,業務自動化,B2B系統,LINE報價系統,企業流程自動化,AI業務助理,內部系統自動化">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17808239126"></script>
 <script>
@@ -14,6 +17,10 @@
   gtag('js', new Date());
   gtag('config', 'AW-17808239126');
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業自動化方案｜LINE Bot × AI 驅動的業務流程自動化｜免費諮詢</title>
+<meta name="description" content="用 LINE Bot + AI 把你公司最煩的流程自動化。查價報價、下單追蹤、簽核審批、報表產出、異常通知——業務人員不用離開 LINE 就能完成所有事。">
+<meta name="keywords" content="企業自動化,LINE Bot企業,業務自動化,B2B系統,LINE報價系統,企業流程自動化,AI業務助理,內部系統自動化">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -21,18 +28,18 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#F7F8FA;
-  --bg-alt:#ECEEF2;
-  --bg-dark:#12151C;
+  --bg:#F8FAFC;
+  --bg-alt:#F1F5F9;
+  --bg-dark:#0F172A;
   --surface:#FFFFFF;
-  --text:#12151C;
-  --text-sub:#4A4E57;
-  --text-light:#868A94;
-  --line-color:#D8DAE0;
-  --accent:#1A56DB;
-  --accent-hover:#1E40AF;
-  --gold:#92742B;
-  --green:#2D7A4F;
+  --text:#0F172A;
+  --text-sub:#475569;
+  --text-light:#64748B;
+  --line-color:#E2E8F0;
+  --accent:#2563EB;
+  --accent-hover:#1D4ED8;
+  --navy:#1E3A8A;
+  --navy-hover:#1E40AF;
   --serif:'Noto Serif TC',serif;
   --sans:'Noto Sans TC',sans-serif;
   --ease-out:cubic-bezier(0.16,1,0.3,1);
@@ -50,19 +57,86 @@ body{
 a{color:inherit;text-decoration:none}
 
 body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.02;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,48px)}
 .divider{height:1px;background:var(--line-color);margin:0}
 
+/* ═══ PHONE MOCKUP & NEW LAYOUTS ═══ */
+.device-container {
+  position:relative;width:100%;max-width:540px;margin:0 auto;
+}
+.phone-mockup{
+  position:relative;width:100%;max-width:320px;margin:0 auto;
+  background:#000;border-radius:40px;padding:12px;box-shadow:0 24px 64px rgba(15,23,42,0.15), inset 0 0 0 2px #444;
+  animation:float 6s ease-in-out infinite;
+}
+.phone-mockup::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:120px;height:24px;background:#000;border-bottom-left-radius:16px;border-bottom-right-radius:16px;
+  z-index:2;
+}
+.phone-mockup img{
+  width:100%;height:auto;border-radius:32px;display:block;
+  object-fit:cover;object-position:top;background:var(--surface);
+}
+
+.dashboard-mockup{
+  position:relative;width:100%;background:var(--surface);
+  border-radius:12px;box-shadow:0 24px 64px rgba(15,23,42,0.1);
+  border:1px solid var(--line-color);overflow:hidden;
+  animation:float 6s ease-in-out infinite reverse;
+}
+.dashboard-mockup::before{
+  content:'';display:block;height:28px;background:var(--bg-alt);
+  border-bottom:1px solid var(--line-color);
+}
+.dashboard-mockup::after{
+  content:'•••';position:absolute;top:2px;left:14px;
+  font-size:24px;line-height:24px;color:var(--text-light);letter-spacing:1px;opacity:0.6;
+}
+.dashboard-mockup img{
+  width:100%;height:auto;display:block;background:var(--surface);
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:center;
+}
+@media(min-width:800px){
+  .hero-grid{grid-template-columns:1fr 1fr;gap:64px}
+  .hero-grid .device-container, .hero-grid .phone-mockup{margin-left:auto;margin-right:0}
+}
+.feat-row{
+  display:grid;grid-template-columns:1fr;gap:40px;align-items:center;
+  margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--line-color);
+}
+.feat-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+@media(min-width:800px){
+  .feat-row{grid-template-columns:1fr 1fr;gap:80px}
+  .feat-row.reverse .feat-text{order:2}
+  .feat-row.reverse .feat-img{order:1}
+}
+.feat-text h3{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:900;margin-bottom:16px;line-height:1.4}
+.feat-text p{font-size:15px;color:var(--text-sub);line-height:1.8;margin-bottom:24px}
+.feat-list{list-style:none;margin-bottom:0}
+.feat-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.feat-list li::before{content:'✓';color:var(--accent);font-weight:900}
+.feat-list-title{font-weight:700;display:block;margin-bottom:4px;color:var(--text)}
+.feat-list-desc{font-size:14px;color:var(--text-sub);line-height:1.6}
+
 /* ═══ NAV ═══ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:0 clamp(24px,5vw,48px);height:56px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(247,248,250,0.9);backdrop-filter:blur(12px);
+  background:rgba(248,250,252,0.9);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line-color);
 }
 .nav-logo{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--text-light)}
@@ -73,9 +147,9 @@ nav{
   font-size:12px;letter-spacing:0.5px;color:var(--text-light);
   padding:6px 14px;border-radius:4px;transition:all .2s;font-weight:500;
 }
-.nav-link:hover{color:var(--text);background:rgba(0,0,0,0.04)}
-.nav-link.accent{color:var(--accent);border:1px solid rgba(26,86,219,0.2)}
-.nav-link.accent:hover{background:rgba(26,86,219,0.06)}
+.nav-link:hover{color:var(--text);background:rgba(15,23,42,0.04)}
+.nav-link.accent{color:var(--accent);border:1px solid rgba(37,99,235,0.2)}
+.nav-link.accent:hover{background:rgba(37,99,235,0.06)}
 @media(max-width:600px){.nav-links{gap:4px}.nav-link{font-size:11px;padding:5px 10px}}
 
 /* ═══ HERO ═══ */
@@ -93,18 +167,18 @@ nav{
 }
 .hero h1 span{color:var(--accent)}
 .hero-body{
-  max-width:520px;font-size:clamp(15px,1.6vw,17px);
+  max-width:500px;font-size:clamp(15px,1.6vw,17px);
   color:var(--text-sub);line-height:1.85;margin-bottom:40px;
   opacity:0;animation:up .7s var(--ease-out) .45s forwards;
 }
 .btn-cta{
   display:inline-flex;align-items:center;gap:10px;
-  padding:15px 32px;background:var(--accent);color:#fff;
+  padding:15px 32px;background:var(--navy);color:#fff;
   font-size:15px;font-weight:700;border-radius:6px;
   border:none;cursor:pointer;transition:background .25s,transform .25s;
   opacity:0;animation:up .7s var(--ease-out) .6s forwards;
 }
-.btn-cta:hover{background:var(--accent-hover);transform:translateY(-1px);color:#fff}
+.btn-cta:hover{background:var(--navy-hover);transform:translateY(-1px);color:#fff}
 .hero-note{
   margin-top:14px;font-size:12px;color:var(--text-light);
   opacity:0;animation:up .7s var(--ease-out) .7s forwards;
@@ -167,31 +241,15 @@ nav{
 
 /* ═══ FEATURES ═══ */
 .features{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
-.features .section-title{margin-bottom:16px}
+.features h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:16px;
+}
 .features-intro{
-  font-size:15px;color:var(--text-sub);max-width:480px;
+  font-size:15px;color:var(--text-sub);max-width:520px;
   margin-bottom:48px;line-height:1.8;
 }
-
-/* Feature Blocks */
-.feat-block{margin-bottom:48px}
-.feat-block:last-child{margin-bottom:0}
-.feat-block-title{
-  font-family:var(--serif);font-size:clamp(18px,2.5vw,22px);
-  font-weight:900;margin-bottom:20px;padding-bottom:12px;
-  border-bottom:2px solid var(--accent);display:inline-block;
-}
-.feat-grid{
-  display:grid;grid-template-columns:1fr;gap:32px;
-}
-@media(min-width:640px){.feat-grid{grid-template-columns:1fr 1fr;gap:24px 48px}}
-.feat{position:relative;padding-left:20px}
-.feat::before{
-  content:'';position:absolute;left:0;top:6px;
-  width:3px;height:24px;background:var(--accent);border-radius:2px;
-}
-.feat h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.feat p{font-size:14px;color:var(--text-sub);line-height:1.75}
 
 /* ═══ CASE ═══ */
 .case-section{padding:clamp(64px,10vh,100px) 0}
@@ -199,7 +257,8 @@ nav{
 .case-intro{font-size:15px;color:var(--text-sub);margin-bottom:40px;max-width:480px;line-height:1.8}
 .case-highlight{
   background:var(--surface);border:1px solid var(--line-color);
-  border-radius:8px;padding:clamp(28px,4vw,40px);
+  border-radius:12px;padding:clamp(28px,4vw,40px);
+  box-shadow:0 8px 32px rgba(15,23,42,0.03);
 }
 .case-highlight h3{
   font-family:var(--serif);font-size:20px;font-weight:900;margin-bottom:20px;
@@ -209,7 +268,7 @@ nav{
   gap:16px;margin-bottom:24px;
 }
 .case-metric{
-  padding:16px;background:var(--bg);border-left:3px solid var(--accent);
+  padding:16px;background:var(--bg);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;
 }
 .case-metric-num{
   font-family:var(--serif);font-size:24px;font-weight:900;color:var(--accent);
@@ -218,11 +277,16 @@ nav{
 .case-tags{display:flex;flex-wrap:wrap;gap:6px}
 .case-tag{
   font-size:11px;padding:4px 10px;background:var(--bg-alt);
-  border-radius:3px;color:var(--text-sub);font-weight:500;
+  border-radius:4px;color:var(--text-sub);font-weight:500;
 }
 
 /* ═══ PROCESS ═══ */
 .process{padding:clamp(64px,10vh,100px) 0;background:var(--bg-alt)}
+.process h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;
+}
 .steps{
   display:grid;grid-template-columns:repeat(4,1fr);gap:0;
   border-top:1px solid var(--line-color);
@@ -249,6 +313,11 @@ nav{
 
 /* ═══ VOICES ═══ */
 .voices{padding:clamp(64px,10vh,100px) 0}
+.voices h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;
+  margin-bottom:48px;
+}
 .voice-list{display:flex;flex-direction:column;gap:32px}
 .voice{
   display:grid;grid-template-columns:1fr;gap:12px;
@@ -314,9 +383,34 @@ footer a:hover{color:rgba(255,255,255,.5)}
   transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
 }
 .reveal.v{opacity:1;transform:translateY(0)}
+/* ─── Floating LINE CTA ─── */
+.floating-cta{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  width:60px;height:60px;background:#06C755;border-radius:50%;
+  box-shadow:0 8px 24px rgba(6,199,85,0.3);
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+  animation:floatBounce 3s ease-in-out infinite;
+}
+.floating-cta:hover{
+  transform:translateY(-4px);box-shadow:0 12px 32px rgba(6,199,85,0.4);
+}
+.floating-cta svg{width:32px;height:32px;fill:#fff;}
+@keyframes floatBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@media(max-width:600px){
+  .floating-cta{bottom:20px;right:20px;width:52px;height:52px;}
+  .floating-cta svg{width:28px;height:28px;}
+}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KR7ZK383"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav>
@@ -326,22 +420,36 @@ footer a:hover{color:rgba(255,255,255,.5)}
     <a href="/salon" class="nav-link">美業方案</a>
     <a href="/coach" class="nav-link">教練方案</a>
     <a href="/group" class="nav-link">社群團報</a>
-    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent">免費諮詢</a>
+    <a href="https://line.me/ti/p/W_kON8x9Tw" class="nav-link accent" id="cta-nav-line">免費諮詢</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
 <div class="wrap">
-  <p class="hero-eyebrow">企業流程自動化方案</p>
-  <h1>你公司最煩的那段流程，<br>用 <span>LINE + AI</span> 自動化掉。</h1>
-  <p class="hero-body">
-    查價、報價、下單、追蹤、審核、通知、報表——<br>
-    業務人員不用離開 LINE，就能完成所有事。<br>
-    不是導入一套新系統，是讓現有的工作方式變聰明。
-  </p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta">免費諮詢，聊聊你的流程 →</a>
-  <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="hero-eyebrow">企業流程自動化方案</p>
+      <h1>你公司最煩的那段流程，<br>用 <span>LINE + AI</span> 自動化掉。</h1>
+      <p class="hero-body">
+        查價、報價、下單、追蹤、審核、通知、報表——<br>
+        業務人員不用離開 LINE，就能完成所有事。<br>
+        不是導入一套新系統，是讓現有的工作方式變聰明。
+      </p>
+      <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta" id="cta-hero-line">免費諮詢，聊聊你的流程 →</a>
+      <p class="hero-note">30 分鐘免費通話 · 不強迫推銷 · 不適合會直接說</p>
+    </div>
+    <div class="hero-image reveal">
+      <div class="device-container">
+        <div class="dashboard-mockup">
+           <img src="images/enterprise-hero-web.jpg" alt="企業 Web 控制台" onerror="this.src='https://placehold.co/800x500/F1F5F9/94A3B8?text=Web+Dashboard'">
+        </div>
+        <div class="phone-mockup" style="position:absolute; bottom:-10%; right:-10%; width:160px;">
+           <img src="images/enterprise-hero-phone.jpg" alt="LINE 企業助理" onerror="this.src='https://placehold.co/400x800/F8FAFC/94A3B8?text=LINE+Bot'">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -391,120 +499,136 @@ footer a:hover{color:rgba(255,255,255,.5)}
 <section class="features">
 <div class="wrap">
   <p class="section-tag reveal">完整功能</p>
-  <h2 class="section-title reveal">不是一個 chatbot。<br>是一整套營運系統，入口在 LINE。</h2>
+  <h2 class="reveal">不是一個 chatbot。<br>是一整套營運系統，入口在 LINE。</h2>
   <p class="features-intro reveal">以下每一項功能都是從真實企業的需求中長出來的，不是想像出來的。</p>
 
   <!-- Block 1: 查價報價 -->
-  <div class="feat-block reveal">
-    <div class="feat-block-title">AI 智慧查價報價</div>
-    <div class="feat-grid">
-      <div class="feat">
-        <h3>自然語言查價</h3>
-        <p>業務在 LINE 說「預算 500-700，300 個」，AI 自動搜尋 2000+ 商品、計算報價、回傳商品卡片。</p>
-      </div>
-      <div class="feat">
-        <h3>四級客戶分級定價</h3>
-        <p>不同等級的客戶看到不同價格。數量越多越便宜，階梯報價自動算。底價防線確保不會虧本出貨。</p>
-      </div>
-      <div class="feat">
-        <h3>商品卡片 + 一鍵報價</h3>
-        <p>搜尋結果回傳精緻的 Flex 商品卡片，含圖片、型號、庫存、各數量報價。按一下就產出可複製的報價文字。</p>
-      </div>
-      <div class="feat">
-        <h3>同義詞自動修正</h3>
-        <p>打「藍芽」自動搜「藍牙」，打「捕蚊拍」自動搜「電蚊拍」。業務不用記正確名稱。</p>
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>AI 智慧查價報價</h3>
+      <p>讓業務團隊在面對報價時完全自動化，瞬間解決計算與查表的痛點。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">自然語言查價</span>
+          <span class="feat-list-desc">業務在 LINE 說「預算 500-700，300 個」，AI 自動搜尋 2000+ 商品、計算報價、回傳商品卡片。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">四級客戶分級定價</span>
+          <span class="feat-list-desc">不同等級的客戶看到不同價格。數量越多越便宜，階梯報價自動算。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">同義詞自動修正</span>
+          <span class="feat-list-desc">打「藍芽」自動搜「藍牙」，打「捕蚊拍」自動搜「電蚊拍」。業務不用記正確名稱。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/enterprise-feat1.jpg" alt="AI 智慧查價" onerror="this.src='https://placehold.co/400x800/FFFFFF/94A3B8?text=LINE+Search'">
       </div>
     </div>
   </div>
 
   <!-- Block 2: 下單出貨 -->
-  <div class="feat-block reveal">
-    <div class="feat-block-title">下單 × 出貨 × 追蹤</div>
-    <div class="feat-grid">
-      <div class="feat">
-        <h3>AI 解析下單訊息</h3>
-        <p>客戶在 LINE 貼下單資訊（收件人、地址、商品明細），AI 自動解析成結構化訂單。不用手動轉錄。</p>
-      </div>
-      <div class="feat">
-        <h3>自動配對型號 + 換算</h3>
-        <p>「2 箱 KY-2022」自動查出箱入數並換算總量。型號打錯也能模糊比對找到正確商品。</p>
-      </div>
-      <div class="feat">
-        <h3>訂單確認卡片</h3>
-        <p>系統產出訂單確認 Flex 卡片，含明細、金額、運費。客戶按「確認」就成立，按「取消」就作廢。</p>
-      </div>
-      <div class="feat">
-        <h3>批次訂單處理</h3>
-        <p>一次貼多筆訂單，系統逐筆拆解、逐筆建立、逐筆追蹤。批量出貨場景一次搞定。</p>
+  <div class="feat-row reverse">
+    <div class="feat-text reveal">
+      <h3>下單 × 出貨 × 追蹤</h3>
+      <p>從前端接單到後端對接，大幅降低手寫轉錄的錯誤率，讓出貨像網購一樣流暢。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">AI 解析下單訊息</span>
+          <span class="feat-list-desc">客戶在 LINE 貼下單資訊（收件人、地址、明細），AI 自動解析成結構化訂單。不用手動轉錄。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">自動配對型號 + 換算</span>
+          <span class="feat-list-desc">「2 箱 KY-2022」自動查出箱入數並換算總量。型號打錯也能模糊比對找到正確商品。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">訂單確認卡片</span>
+          <span class="feat-list-desc">系統產出訂單確認 Flex 卡片，含明細、金額、運費。客戶按確認就成立。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/enterprise-feat2.jpg" alt="下單出貨追蹤" onerror="this.src='https://placehold.co/400x800/FFFFFF/94A3B8?text=Order+Card'">
       </div>
     </div>
   </div>
 
   <!-- Block 3: 內部流程 -->
-  <div class="feat-block reveal">
-    <div class="feat-block-title">內部流程自動化</div>
-    <div class="feat-grid">
-      <div class="feat">
-        <h3>借樣品申請</h3>
-        <p>業務在 LINE 填案名、商品、歸還日期，系統自動建立申請單並通知相關人員。</p>
-      </div>
-      <div class="feat">
-        <h3>不良品回收申請</h3>
-        <p>客訴進來，業務直接在 LINE 填不良品資訊、故障原因、取件地址，系統自動建單並派工。</p>
-      </div>
-      <div class="feat">
-        <h3>Email 自動轉發</h3>
-        <p>大量訂單、商品預留、廠價申請——系統自動判斷類型，組成專業 email 寄給對應負責人，主旨自動擷取關鍵資訊。</p>
-      </div>
-      <div class="feat">
-        <h3>訂單異常處理</h3>
-        <p>缺貨、延遲出貨，內部人員填寫原因後，系統自動透過 LINE 推播通知客戶。不用再一個一個打電話。</p>
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>內部流程自動化</h3>
+      <p>借樣、回報、審核再也不用跑流程，用對話引導輕鬆完成。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">借樣品與不良品申請</span>
+          <span class="feat-list-desc">業務在 LINE 填寫資訊，系統自動建立申請單並通知相關人員派工。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">Email 自動轉發</span>
+          <span class="feat-list-desc">大量訂單、廠價申請，系統自動判斷類型寄給對應負責人，主旨自動擷取關鍵資訊。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">訂單異常處理推播</span>
+          <span class="feat-list-desc">缺貨、延遲出貨，填寫原因後系統自動透過 LINE 推播給客戶。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="phone-mockup">
+        <img src="images/enterprise-feat3.jpg" alt="內部流程申請" onerror="this.src='https://placehold.co/400x800/FFFFFF/94A3B8?text=Auto+Flow'">
       </div>
     </div>
   </div>
 
   <!-- Block 4: Web 系統 -->
-  <div class="feat-block reveal">
-    <div class="feat-block-title">Web 查價後台 × 匯出</div>
-    <div class="feat-grid">
-      <div class="feat">
-        <h3>Web 查價系統</h3>
-        <p>完整的網頁版查價後台，支援搜尋、排序、篩選。從 LINE 一鍵 SSO 登入，不用另外記帳號密碼。</p>
-      </div>
-      <div class="feat">
-        <h3>報價單管理</h3>
-        <p>在 Web 上組合報價單，加入商品、調整數量、選擇客戶等級，報價即時計算。</p>
-      </div>
-      <div class="feat">
-        <h3>匯出 Excel / PPT</h3>
-        <p>一鍵匯出 Excel 報價單或 PPT 簡報（含商品圖片），直接寄給客戶。兩種模式：相容優先或速度優先。</p>
-      </div>
-      <div class="feat">
-        <h3>報價歷史紀錄</h3>
-        <p>每一筆報價自動存檔，可追溯、可重新載入、可比較。業務人員不用自己記。</p>
+  <div class="feat-row reverse">
+    <div class="feat-text reveal">
+      <h3>Web 查價後台 × 匯出</h3>
+      <p>提供專業的高階後台，強大的管理介面與一鍵產報表功能。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">Web 查價系統</span>
+          <span class="feat-list-desc">完整的網頁版查價後台，支援搜尋、排序、篩選。從 LINE 一鍵 SSO 登入。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">匯出 Excel / PPT 報價</span>
+          <span class="feat-list-desc">在 Web 上組合報價單，一鍵匯出 Excel 報價單或 PPT 簡報（含商品圖片）。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">報價歷史紀錄</span>
+          <span class="feat-list-desc">可追溯、可重新載入、可比較，每一次的報價都是數據資產。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="dashboard-mockup">
+        <img src="images/enterprise-feat4.jpg" alt="Web後台管理" onerror="this.src='https://placehold.co/800x500/FFFFFF/94A3B8?text=Web+Export'">
       </div>
     </div>
   </div>
 
   <!-- Block 5: 管理 -->
-  <div class="feat-block reveal">
-    <div class="feat-block-title">商品管理 × 權限控管</div>
-    <div class="feat-grid">
-      <div class="feat">
-        <h3>Excel 批次匯入</h3>
-        <p>商品資料、庫存更新，用 Excel 匯入一次搞定。不用一筆一筆手動輸入。</p>
-      </div>
-      <div class="feat">
-        <h3>商品圖庫自動同步</h3>
-        <p>從 Google Drive 自動同步商品圖片到系統，支援斷點接力（超過 7 分鐘自動切批次）。</p>
-      </div>
-      <div class="feat">
-        <h3>多層級權限</h3>
-        <p>群組權限、個人權限、管理員權限分開管。不同客戶看到不同價格，管理員可切換視角模擬。</p>
-      </div>
-      <div class="feat">
-        <h3>帳號綁定 + VIP</h3>
-        <p>LINE 帳號與系統帳號自動綁定。VIP 客戶特殊標記，享有專屬價格欄位。</p>
+  <div class="feat-row">
+    <div class="feat-text reveal">
+      <h3>商品管理 × 權限控管</h3>
+      <p>雲端同步、自動導入，讓營運管理者輕鬆掌握數千種商品。</p>
+      <ul class="feat-list">
+        <li>
+          <span class="feat-list-title">Excel 批次匯入與圖庫同步</span>
+          <span class="feat-list-desc">庫存 Excel 匯入，加上 Google Drive 自動同步圖片，支援斷點接力處理。</span>
+        </li>
+        <li>
+          <span class="feat-list-title">多層級權限與 VIP</span>
+          <span class="feat-list-desc">群組權限、管理員權限分開。VIP 客戶特殊標記自動享有專屬價格欄位。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="feat-img reveal">
+      <div class="dashboard-mockup">
+        <img src="images/enterprise-feat5.jpg" alt="管理權限分配" onerror="this.src='https://placehold.co/800x500/FFFFFF/94A3B8?text=Admin+Roles'">
       </div>
     </div>
   </div>
@@ -547,7 +671,7 @@ footer a:hover{color:rgba(255,255,255,.5)}
 <section class="process">
 <div class="wrap">
   <p class="section-tag reveal">導入流程</p>
-  <h2 class="section-title reveal">不是買一套現成軟體。<br>是根據你的流程量身訂做。</h2>
+  <h2 class="reveal">不是買一套現成軟體。<br>是根據你的流程量身訂做。</h2>
   <div class="steps">
     <div class="step-item reveal">
       <div class="step-num">01</div>
@@ -577,7 +701,7 @@ footer a:hover{color:rgba(255,255,255,.5)}
 <section class="voices">
 <div class="wrap">
   <p class="section-tag reveal">客戶回饋</p>
-  <h2 class="section-title reveal">他們已經在用了。</h2>
+  <h2 class="reveal">他們已經在用了。</h2>
   <div class="voice-list">
     <div class="voice reveal">
       <blockquote>以前業務報價要開 ERP 查成本、套公式算價格、再打進 LINE 回覆客戶。現在直接在 LINE 群組說需求，AI 幾秒就回報價卡片。一天省下至少兩小時。</blockquote>
@@ -601,7 +725,7 @@ footer a:hover{color:rgba(255,255,255,.5)}
 <section class="faq">
 <div class="wrap">
   <p class="section-tag reveal">常見問題</p>
-  <h2 class="section-title reveal">你可能想問的。</h2>
+  <h2 class="reveal">你可能想問的。</h2>
   <div class="faq-list">
     <div class="faq-item reveal"><div class="faq-q">這跟 ERP 有什麼不同？</div><div class="faq-a"><div class="faq-a-inner">不是取代 ERP，而是補足 ERP 做不到的事——讓你的業務團隊在 LINE 裡就能完成日常工作，不用切換系統。可以跟現有 ERP 並存，資料互通。</div></div></div>
     <div class="faq-item reveal"><div class="faq-q">我們公司的流程很特殊，可以客製嗎？</div><div class="faq-a"><div class="faq-a-inner">這就是客製的。每一套系統都是根據你的流程從頭設計，不是通用模板。你的定價規則、審核流程、通知對象都可以完全按照你的需求來。</div></div></div>
@@ -618,7 +742,7 @@ footer a:hover{color:rgba(255,255,255,.5)}
 <div class="wrap">
   <h2 class="reveal">你的業務團隊每天在 LINE 上工作。<br>讓 LINE 也幫他們工作。</h2>
   <p class="reveal">30 分鐘免費諮詢，聊聊你公司的流程。<br>我來評估哪些可以自動化、值不值得做。</p>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal">加 LINE 免費諮詢 →</a>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="btn-cta reveal" id="cta-footer-line">加 LINE 免費諮詢 →</a>
   <div class="final-contact reveal">
     <span>LINE：0985266991</span>
     <span>Email：tinghowkuo@gmail.com</span>
@@ -644,5 +768,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 </script>
+
+<!-- ═══════════ FLOATING CTA ═══════════ -->
+<a href="https://line.me/ti/p/W_kON8x9Tw" class="floating-cta" id="cta-line-float" title="加 LINE 諮詢" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M23.146 10.362c0-4.38-4.408-7.946-9.824-7.946-5.416 0-9.824 3.567-9.824 7.946 0 3.931 3.513 7.234 8.28 7.859.324.068.756.208.865.485.099.25-.032.645-.064.896l-.16 1.002c-.049.303-.23.903.784.476 1.014-.427 5.483-3.23 7.55-5.591.758-.87 1.393-2.029 1.393-3.127zm-13.844.75h-2.147v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v2.744h1.101c.289 0 .523.234.523.523s-.234.523-.523.523zm3.176 0h-1.046c-.289 0-.523-.234-.523-.523v-3.79c0-.289.234-.523.523-.523s.523.234.523.523v3.79c0 .289-.234.523-.523.523zm3.033-2.181l-1.396-1.579c-.214-.241-.531-.38-.857-.38h-.002c-.289 0-.523.234-.523.523v3.79c0 .289.234.523.523.523s.523-.234.523-.523v-1.637l1.396 1.576c.214.241.531.38.857.38h.002c.289 0 .523-.234.523-.523v-3.79c0-.289-.234-.523-.523-.523s-.523.234-.523.523v1.64z"/></svg>
+</a>
 </body>
 </html>
