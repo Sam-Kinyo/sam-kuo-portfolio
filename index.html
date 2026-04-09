@@ -18,8 +18,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'AW-17808239126');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>郭庭豪 — LINE Bot × AI 企業自動化專家</title>
-<meta name="description" content="專注 LINE Bot + AI 驅動的企業流程自動化。從連鎖零售到 B2B 採購，五個產業的實戰經驗。">
+<title>橙築國際 — LINE Bot × AI 企業流程自動化</title>
+<meta name="description" content="橙築國際 CHENG ZHU — 專注 LINE Bot + AI 驅動的企業流程自動化。幫企業省下每天數小時的人工作業。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -103,7 +103,7 @@ nav{
 /* ─── Solutions Section ─── */
 .solutions{padding:clamp(60px,10vh,100px) 0;border-top:1px solid #1a1a1a}
 .solutions-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
 }
 @media(max-width:800px){.solutions-grid{grid-template-columns:1fr}}
 .solution-card{
@@ -135,6 +135,7 @@ nav{
 .hero{
   min-height:100vh;display:flex;flex-direction:column;justify-content:center;
   position:relative;padding:100px 0 80px;
+  overflow:hidden;
 }
 .hero::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
@@ -347,6 +348,59 @@ footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
   .floating-cta{bottom:20px;right:20px;width:52px;height:52px;}
   .floating-cta svg{width:28px;height:28px;}
 }
+
+/* ─── Particle Wave Background ─── */
+.particle-wave{
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.particle-wave::before,.particle-wave::after{
+  content:'';position:absolute;border-radius:50%;
+  filter:blur(80px);opacity:0;
+  animation:waveFloat 8s var(--ease) infinite;
+}
+.particle-wave::before{
+  width:600px;height:300px;
+  background:radial-gradient(ellipse,rgba(200,169,96,0.25) 0%,rgba(200,169,96,0.08) 40%,transparent 70%);
+  bottom:10%;right:5%;
+  animation-delay:0s;opacity:0;
+  animation:waveFloat 8s var(--ease) infinite, waveFadeIn 1.5s var(--ease-out) forwards;
+}
+.particle-wave::after{
+  width:400px;height:250px;
+  background:radial-gradient(ellipse,rgba(74,158,110,0.2) 0%,rgba(74,158,110,0.06) 40%,transparent 70%);
+  bottom:20%;right:15%;
+  animation-delay:2s;opacity:0;
+  animation:waveFloat 10s var(--ease) 2s infinite, waveFadeIn 1.5s var(--ease-out) 0.5s forwards;
+}
+.particle-dots{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 20% 70%,rgba(200,169,96,0.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 40% 60%,rgba(200,169,96,0.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 80%,rgba(200,169,96,0.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 50%,rgba(74,158,110,0.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 30% 75%,rgba(200,169,96,0.6) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 65%,rgba(74,158,110,0.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 85%,rgba(200,169,96,0.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 90% 70%,rgba(74,158,110,0.3) 0%,transparent 100%);
+  animation:dotsShimmer 6s ease-in-out infinite alternate;
+}
+@keyframes waveFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-20px) scale(1.05)}
+  66%{transform:translate(-20px,15px) scale(0.95)}
+}
+@keyframes waveFadeIn{
+  to{opacity:1}
+}
+@keyframes dotsShimmer{
+  0%{opacity:0.4;transform:translateY(0)}
+  100%{opacity:0.8;transform:translateY(-8px)}
+}
+
+/* Sections with particle backgrounds need relative positioning */
+.hero,.cta-section{position:relative;overflow:hidden}
+.hero .container,.cta-section .container{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -357,7 +411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ NAV ═══════════ -->
 <nav>
-  <div class="nav-logo"><a href="/">SAM KUO</a></div>
+  <div class="nav-logo"><a href="/">CHENG ZHU</a></div>
   <div class="nav-links">
     <a href="#cases" class="nav-link">案例</a>
     <a href="#solutions" class="nav-link">方案</a>
@@ -368,16 +422,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
+<div class="particle-wave"></div><div class="particle-dots"></div>
 <div class="container">
   <div class="hero-label">Line Bot × AI Automation</div>
   <h1 class="hero-name">
     用 <em>LINE Bot</em><br>
-    取代你最煩的<br>
-    日常作業
+    自動完成日常作業
   </h1>
   <p class="hero-sub">
-    我是郭庭豪 (Sam Kuo)，專注於 LINE Bot + AI 驅動的企業流程自動化。<br>
-    五個截然不同的產業、五套線上穩定運行中的系統，幫企業省下每天數小時的人工作業。
+    專注於 LINE Bot + AI 驅動的企業流程自動化<br>
+    幫企業省下每天數小時的人工作業
   </p>
   <div class="hero-stats">
     <div><div class="stat-num">10+</div><div class="stat-label">產業實戰</div></div>
@@ -391,9 +445,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══════════ CASES ═══════════ -->
 <section class="section" id="cases">
 <div class="container">
-  <div class="section-label reveal">Case Studies</div>
-  <h2 class="section-title reveal">每一個都是<br>正在線上跑的系統</h2>
-  <p class="section-desc reveal">不是 demo，不是 side project。是真實企業每天在用的工具。</p>
+  <div class="section-label reveal">案例研究</div>
+  <h2 class="section-title reveal">每一個都真實企業<br>每天在線上跑的工具</h2>
 
   <div class="cases">
 
@@ -605,20 +658,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-section" id="contact">
+<div class="particle-wave"></div><div class="particle-dots"></div>
 <div class="container">
   <div class="section-label reveal">Let's Talk</div>
   <h2 class="cta-title reveal">你的業務流程裡，<br>哪一段最煩？</h2>
   <p class="cta-desc reveal">
     告訴我你每天在重複做的事，<br>
-    我來評估能不能用 LINE Bot + AI 幫你省掉。<br>
-    初次諮詢免費。
+    我來評估能不能用 LINE Bot + AI 幫你省掉
   </p>
+  <div class="section-label reveal" style="margin-top:40px">初次諮詢免費</div>
   <a href="https://line.me/ti/p/W_kON8x9Tw" class="cta-btn reveal" id="cta-footer-line">
     加 LINE 聊聊 →
   </a>
   <div class="cta-channels reveal">
-    <span class="cta-channel">LINE：0985266991</span>
-    <span class="cta-channel">Email：tinghowkuo@gmail.com</span>
+    <span class="cta-channel">立即撥打 0975-691-485</span>
+    <span class="cta-channel">03-370-8108　桃園市桃園區春日路818號1樓</span>
   </div>
 </div>
 </section>
@@ -626,7 +680,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
 <div class="container">
-  <p>© 2026 郭庭豪 — LINE Bot × AI 企業自動化</p>
+  <p>© 2026 橙築國際 — LINE Bot × AI 企業流程自動化</p>
 </div>
 </footer>
 
