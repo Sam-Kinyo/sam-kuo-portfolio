@@ -135,15 +135,17 @@ nav{
 }
 .solution-link:hover{gap:10px}
 
-/* ─── Hero padding for fixed nav ─── */
+/* ─── Hero as full-bleed image ─── */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  position:relative;padding:100px 0 80px;
-  overflow:hidden;
+  position:relative;overflow:hidden;
 }
-.hero::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
-  background:linear-gradient(to top,var(--bg),transparent);pointer-events:none;
+.hero-img{
+  display:block;width:100%;height:auto;
+  min-height:50vh;object-fit:cover;
+}
+.hero-sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);border:0;
 }
 .hero-label{
   font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);
@@ -426,18 +428,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
-<div class="particle-wave"></div><div class="particle-dots"></div>
-<div class="container">
-  <div class="hero-label">Line Bot × AI Automation</div>
-  <h1 class="hero-name">
-    用 <em>LINE Bot</em><br>
-    自動完成日常作業
-  </h1>
-  <p class="hero-sub">
-    專注於 LINE Bot + AI 驅動的企業流程自動化<br>
-    幫企業省下每天數小時的人工作業
-  </p>
-</div>
+  <picture>
+    <source srcset="images/hero-banner.webp" type="image/webp">
+    <img src="images/hero-banner.jpg" alt="橙築國際 — 用 LINE Bot 自動完成日常作業" class="hero-img">
+  </picture>
+  <h1 class="hero-sr-only">用 LINE Bot 自動完成日常作業 — 專注於 LINE Bot + AI 驅動的企業流程自動化，幫企業省下每天數小時的人工作業</h1>
 </section>
 
 <!-- ═══════════ CASES ═══════════ -->
