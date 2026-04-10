@@ -349,32 +349,55 @@ footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
   .floating-cta svg{width:28px;height:28px;}
 }
 
-/* ─── Section Background Images ─── */
-.section-bg{
-  position:absolute;inset:0;z-index:0;pointer-events:none;
-  background-size:cover;background-position:center;background-repeat:no-repeat;
+/* ─── Particle Wave Background ─── */
+.particle-wave{
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
-.hero .section-bg{background-image:url('images/bg-hero.webp')}
-.section-bg-tech{background-image:url('images/bg-tech.webp')}
-.section-bg-solutions{background-image:url('images/bg-solutions.webp')}
-.cta-section .section-bg{background-image:url('images/bg-cta.webp')}
-.section-bg-footer{background-image:url('images/bg-footer.webp')}
+.particle-wave::before,.particle-wave::after{
+  content:'';position:absolute;border-radius:50%;filter:blur(80px);
+}
+.particle-wave::before{
+  width:600px;height:300px;bottom:10%;right:5%;
+  background:radial-gradient(ellipse,rgba(200,169,96,0.25) 0%,rgba(200,169,96,0.08) 40%,transparent 70%);
+  animation:waveFloat 8s var(--ease) infinite;
+}
+.particle-wave::after{
+  width:400px;height:250px;bottom:20%;right:15%;
+  background:radial-gradient(ellipse,rgba(74,158,110,0.2) 0%,rgba(74,158,110,0.06) 40%,transparent 70%);
+  animation:waveFloat 10s var(--ease) 2s infinite;
+}
+.particle-dots{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 70%,rgba(200,169,96,0.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 40% 60%,rgba(200,169,96,0.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 80%,rgba(200,169,96,0.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 50%,rgba(74,158,110,0.4) 0%,transparent 100%),
+    radial-gradient(2px 2px at 30% 75%,rgba(200,169,96,0.6) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 65%,rgba(74,158,110,0.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 85%,rgba(200,169,96,0.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 90% 70%,rgba(74,158,110,0.3) 0%,transparent 100%);
+  animation:dotsShimmer 6s ease-in-out infinite alternate;
+}
+@keyframes waveFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-20px) scale(1.05)}
+  66%{transform:translate(-20px,15px) scale(0.95)}
+}
+@keyframes dotsShimmer{
+  0%{opacity:0.4;transform:translateY(0)}
+  100%{opacity:0.8;transform:translateY(-8px)}
+}
 
-/* Sections with backgrounds need relative positioning */
-.hero,.cta-section{position:relative;overflow:hidden}
-.hero .container,.cta-section .container{position:relative;z-index:1}
+/* Sections with particle backgrounds */
+.hero,.cta-section,.section-banner{position:relative;overflow:hidden}
+.hero .container,.cta-section .container,.section-banner .container{position:relative;z-index:1}
 
 /* Tech & Solutions intro banners */
 .section-banner{
-  position:relative;overflow:hidden;
   padding:clamp(60px,12vh,120px) 0;text-align:center;
+  border-top:1px solid #1a1a1a;
 }
-.section-banner .container{position:relative;z-index:1}
-.section-banner .section-bg{opacity:0.85}
-
-/* Footer with background */
-footer{position:relative;overflow:hidden}
-footer .container{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -396,7 +419,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
-<div class="section-bg"></div>
+<div class="particle-wave"></div><div class="particle-dots"></div>
 <div class="container">
   <div class="hero-label">Line Bot × AI Automation</div>
   <h1 class="hero-name">
@@ -579,7 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ TECH BANNER ═══════════ -->
 <section class="section-banner" id="tech">
-  <div class="section-bg section-bg-tech"></div>
+  <div class="particle-wave"></div><div class="particle-dots"></div>
   <div class="container">
     <div class="hero-label" style="animation:none;opacity:1">Line Bot × AI Automation</div>
     <h2 class="section-title reveal" style="text-align:center">不挑框架，<br>挑<em>最適合的</em></h2>
@@ -603,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ SOLUTIONS BANNER ═══════════ -->
 <section class="section-banner" id="solutions">
-  <div class="section-bg section-bg-solutions"></div>
+  <div class="particle-wave"></div><div class="particle-dots"></div>
   <div class="container">
     <div class="hero-label" style="animation:none;opacity:1">Line Bot × AI Automation</div>
     <h2 class="section-title reveal" style="text-align:center">你的產業<br>我有<em>現成方案</em></h2>
@@ -645,7 +668,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-section" id="contact">
-<div class="section-bg"></div>
+<div class="particle-wave"></div><div class="particle-dots"></div>
 <div class="container">
   <div class="section-label reveal">Let's Talk</div>
   <h2 class="cta-title reveal">你的業務流程裡，<br>哪一段最煩？</h2>
@@ -666,7 +689,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-<div class="section-bg section-bg-footer"></div>
 <div class="container" style="text-align:center;padding-top:20px;padding-bottom:20px">
   <a href="https://line.me/ti/p/W_kON8x9Tw" target="_blank" rel="noopener">
     <img src="images/qr-line.webp" alt="加 LINE 聯繫橙築國際" style="width:180px;border-radius:8px;margin-bottom:16px">
