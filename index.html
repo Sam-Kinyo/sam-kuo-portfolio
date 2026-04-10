@@ -113,9 +113,13 @@ nav{
   display:flex;flex-direction:column;gap:16px;
 }
 .solution-card:hover{border-color:#2a2a2a}
+.solution-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:1px;
+  color:var(--accent);display:inline;
+}
 .solution-tag{
   font-family:var(--mono);font-size:11px;letter-spacing:2px;
-  color:var(--accent-dim);
+  color:var(--accent-dim);display:inline;
 }
 .solution-card h3{
   font-family:var(--serif);font-size:clamp(20px,3vw,26px);
@@ -398,6 +402,9 @@ footer p{font-size:12px;color:var(--text-muted);letter-spacing:1px}
   padding:clamp(60px,12vh,120px) 0;text-align:center;
   border-top:1px solid #1a1a1a;
 }
+.section-banner em,.cta-title em{
+  font-style:normal;color:var(--green);
+}
 </style>
 </head>
 <body>
@@ -430,12 +437,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     專注於 LINE Bot + AI 驅動的企業流程自動化<br>
     幫企業省下每天數小時的人工作業
   </p>
-  <div class="hero-stats">
-    <div><div class="stat-num">10+</div><div class="stat-label">產業實戰</div></div>
-    <div><div class="stat-num">4000+</div><div class="stat-label">累計終端使用者</div></div>
-    <div><div class="stat-num">5</div><div class="stat-label">套系統上線運行中</div></div>
-  </div>
-  <div class="hero-scroll">Scroll<span></span></div>
 </div>
 </section>
 
@@ -639,26 +640,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="container">
   <div class="solutions-grid">
     <a href="/salon" class="solution-card reveal">
-      <div class="solution-tag">美業方案</div>
-      <h3>髮廊 · 美甲 · 美睫 · SPA</h3>
+      <div><span class="solution-num">01</span> <span class="solution-tag">美業方案</span></div>
+      <h3>髮廊 | 美甲 | 美睫 | SPA</h3>
       <p>客人用 LINE 預約，設計師用 LINE 管班表，老闆用 LINE 看營收拆帳。不用下載 App，不用教客人。</p>
       <span class="solution-link">查看完整方案 →</span>
     </a>
     <a href="/coach" class="solution-card reveal">
-      <div class="solution-tag">教練方案</div>
-      <h3>高爾夫 · 健身 · 瑜伽 · 才藝</h3>
+      <div><span class="solution-num">02</span> <span class="solution-tag">教練方案</span></div>
+      <h3>高爾夫 | 健身 | 瑜伽 | 才藝</h3>
       <p>學員用 LINE 預約，教練一鍵核准，堂數自動扣、到期自動提醒。你只需要專心教課。</p>
       <span class="solution-link">查看完整方案 →</span>
     </a>
     <a href="/group" class="solution-card reveal">
-      <div class="solution-tag">社群團報方案</div>
-      <h3>球敘 · 登山 · 車隊 · 球類社團</h3>
+      <div><span class="solution-num">03</span> <span class="solution-tag">社群團報方案</span></div>
+      <h3>球敘 | 登山 | 車隊 | 球類社團</h3>
       <p>群組裡按按鈕就報名，候補自動遞補，同組管理、AI 操作、自動公告。告別混亂的接龍。</p>
       <span class="solution-link">查看完整方案 →</span>
     </a>
     <a href="/enterprise" class="solution-card reveal">
-      <div class="solution-tag">企業自動化方案</div>
-      <h3>品牌公司 · 業務團隊 · 中型企業</h3>
+      <div><span class="solution-num">04</span> <span class="solution-tag">企業自動化方案</span></div>
+      <h3>品牌公司 | 業務團隊 | 中型企業</h3>
       <p>查價報價、下單追蹤、簽核審批、報表匯出——用 LINE + AI 把整間公司最煩的流程自動化掉。</p>
       <span class="solution-link">查看完整方案 →</span>
     </a>
@@ -670,30 +671,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-section" id="contact">
 <div class="particle-wave"></div><div class="particle-dots"></div>
 <div class="container">
-  <div class="section-label reveal">Let's Talk</div>
-  <h2 class="cta-title reveal">你的業務流程裡，<br>哪一段最煩？</h2>
-  <p class="cta-desc reveal">
-    告訴我你每天在重複做的事，<br>
-    我來評估能不能用 LINE Bot + AI 幫你省掉
-  </p>
-  <div class="section-label reveal" style="margin-top:40px">初次諮詢免費</div>
-  <a href="https://line.me/ti/p/W_kON8x9Tw" class="cta-btn reveal" id="cta-footer-line">
-    加 LINE 聊聊 →
-  </a>
-  <div class="cta-channels reveal">
-    <span class="cta-channel">立即撥打 0975-691-485</span>
-    <span class="cta-channel">03-370-8108　桃園市桃園區春日路818號1樓</span>
-  </div>
+  <div class="section-label reveal">- Let's Talk -</div>
+  <h2 class="cta-title reveal">你的業務流程裡，<br>哪一段<em>最煩</em>？</h2>
+  <p class="cta-desc reveal">告訴我你每天在重複做的事</p>
+  <p class="cta-desc reveal" style="font-size:clamp(16px,2.5vw,22px);color:var(--text);font-weight:500">我來評估能不能用 LINE Bot + AI 幫你省掉</p>
 </div>
 </section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-<div class="container" style="text-align:center;padding-top:20px;padding-bottom:20px">
-  <a href="https://line.me/ti/p/W_kON8x9Tw" target="_blank" rel="noopener">
-    <img src="images/qr-line.webp" alt="加 LINE 聯繫橙築國際" style="width:180px;border-radius:8px;margin-bottom:16px">
-  </a>
-  <p style="font-size:14px;color:var(--text-dim);margin-bottom:8px">03-370-8108　桃園市桃園區春日路818號1樓</p>
+<div class="container" style="text-align:center;padding:clamp(40px,8vh,80px) 0">
+  <div class="section-label reveal">- 初次諮詢免費 -</div>
+  <a href="https://line.me/ti/p/W_kON8x9Tw" class="cta-btn reveal" style="margin:24px auto" target="_blank" rel="noopener">→ 加 LINE 聯繫</a>
+  <div style="margin:24px auto">
+    <a href="https://line.me/ti/p/W_kON8x9Tw" target="_blank" rel="noopener">
+      <img src="images/qr-line.webp" alt="加 LINE 聯繫橙築國際" style="width:160px;border-radius:8px">
+    </a>
+  </div>
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:4px">立即撥打</p>
+  <p style="font-size:20px;color:var(--text);font-weight:500;letter-spacing:2px;margin-bottom:24px">0975-691-485</p>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px">03-370-8108　桃園市桃園區春日路818號1樓</p>
   <p>© 2026 橙築國際 — LINE Bot × AI 企業流程自動化</p>
 </div>
 </footer>
